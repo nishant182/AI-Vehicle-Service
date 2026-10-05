@@ -1,6 +1,6 @@
 // ============================================================
 // AI VEHICLE SERVICE - MY VEHICLES
-// Backend API Connected Version
+// Production Backend Connected Version
 // ============================================================
 
 const API_BASE_URL = "https://ai-vehicle-service.onrender.com";
@@ -17,13 +17,18 @@ function getAccessToken() {
     );
 }
 
+
 function getCurrentUser() {
     try {
-        return JSON.parse(localStorage.getItem("aiVehicleUser")) || null;
+        return JSON.parse(
+            localStorage.getItem("aiVehicleUser")
+        ) || null;
     } catch (error) {
+        console.error("User data parse error:", error);
         return null;
     }
 }
+
 
 function redirectToLogin() {
     window.location.href = "login.html";
@@ -67,7 +72,6 @@ function setupMobileSidebar() {
     menuToggle.addEventListener("click", () => {
         sidebar.classList.toggle("open");
     });
-
 }
 
 
@@ -84,7 +88,7 @@ function formatDate(dateValue) {
     const date = new Date(dateValue);
 
     if (Number.isNaN(date.getTime())) {
-        return dateValue;
+        return String(dateValue);
     }
 
     return date.toLocaleDateString("en-IN", {
@@ -101,7 +105,11 @@ function formatDate(dateValue) {
 
 function formatMileage(value) {
 
-    if (value === null || value === undefined || value === "") {
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
         return "0 km";
     }
 
@@ -125,27 +133,32 @@ function getVehicleImageUrl(vehicleImage) {
         return null;
     }
 
-    // Already complete URL
+    const image = String(vehicleImage).trim();
+
+    if (!image) {
+        return null;
+    }
+
+    // Full URL
     if (
-        vehicleImage.startsWith("http://") ||
-        vehicleImage.startsWith("https://")
+        image.startsWith("http://") ||
+        image.startsWith("https://")
     ) {
-        return vehicleImage;
+        return image;
     }
 
     // Backend relative path
-    return `${API_BASE_URL}${vehicleImage}`;
+    if (image.startsWith("/")) {
+        return `${API_BASE_URL}${image}`;
+    }
+
+    return `${API_BASE_URL}/${image}`;
 }
 
 
 // ============================================================
 // VEHICLE HEALTH
 // ============================================================
-// Backend currently does not return a health score.
-// So we use a neutral display until Vehicle Health API
-// is connected.
-
-// This does NOT invent a vehicle health score.
 
 function getHealthInfo(vehicle) {
 
@@ -169,7 +182,9 @@ function createVehicleCard(vehicle) {
 
     const health = getHealthInfo(vehicle);
 
-    const imageUrl = getVehicleImageUrl(vehicle.vehicle_image);
+    const imageUrl = getVehicleImageUrl(
+        vehicle.vehicle_image
+    );
 
     let imageContent = "";
 
@@ -177,10 +192,15 @@ function createVehicleCard(vehicle) {
 
         imageContent = `
             <img
-                src="${imageUrl}"
+                src="${escapeHtml(imageUrl)}"
                 alt="${escapeHtml(vehicle.brand)} ${escapeHtml(vehicle.model)}"
                 class="vehicle-photo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                onerror="
+                    this.style.display='none';
+                    if (this.nextElementSibling) {
+                        this.nextElementSibling.style.display='flex';
+                    }
+                "
             >
 
             <div
@@ -208,7 +228,7 @@ function createVehicleCard(vehicle) {
             ${imageContent}
 
             <span class="vehicle-status ${health.className}">
-                ● ${health.status}
+                ● ${escapeHtml(health.status)}
             </span>
 
         </div>
@@ -221,14 +241,14 @@ function createVehicleCard(vehicle) {
                 <div>
 
                     <span class="vehicle-type">
-                        ${escapeHtml(vehicle.vehicle_type)}
+                        ${escapeHtml(vehicle.vehicle_type || "Vehicle")}
                         •
-                        ${escapeHtml(vehicle.fuel_type)}
+                        ${escapeHtml(vehicle.fuel_type || "N/A")}
                     </span>
 
                     <h3>
-                        ${escapeHtml(vehicle.brand)}
-                        ${escapeHtml(vehicle.model)}
+                        ${escapeHtml(vehicle.brand || "")}
+                        ${escapeHtml(vehicle.model || "")}
                     </h3>
 
                 </div>
@@ -236,7 +256,7 @@ function createVehicleCard(vehicle) {
                 <button
                     class="more-btn"
                     title="Delete vehicle"
-                    data-delete-id="${vehicle.id}">
+                    data-delete-id="${escapeHtml(vehicle.id)}">
                     ⋮
                 </button>
 
@@ -244,7 +264,7 @@ function createVehicleCard(vehicle) {
 
 
             <div class="registration-number">
-                ${escapeHtml(vehicle.registration_number)}
+                ${escapeHtml(vehicle.registration_number || "N/A")}
             </div>
 
 
@@ -255,16 +275,30 @@ function createVehicleCard(vehicle) {
                     <span>Vehicle Health</span>
 
                     <strong>
-                        ${health.score !== null ? `${health.score}/100` : "—"}
+                        ${
+                            health.score !== null
+                                ? `${health.score}/100`
+                                : "—"
+                        }
                     </strong>
 
                 </div>
 
-                <div class="mini-health-bar ${health.className === "warning" ? "warning-bar" : ""}">
+                <div
+                    class="mini-health-bar ${
+                        health.className === "warning"
+                            ? "warning-bar"
+                            : ""
+                    }"
+                >
 
                     <span
-                        style="width:${health.score !== null ? health.score : 0}%">
-                    </span>
+                        style="width:${
+                            health.score !== null
+                                ? health.score
+                                : 0
+                        }%"
+                    ></span>
 
                 </div>
 
@@ -289,10 +323,14 @@ function createVehicleCard(vehicle) {
                     <span>Last Service</span>
 
                     <strong>
-                        ${vehicle.last_service_km !== null &&
-                          vehicle.last_service_km !== undefined
-                            ? formatMileage(vehicle.last_service_km)
-                            : "Not available"}
+                        ${
+                            vehicle.last_service_km !== null &&
+                            vehicle.last_service_km !== undefined
+                                ? formatMileage(
+                                    vehicle.last_service_km
+                                )
+                                : "Not available"
+                        }
                     </strong>
 
                 </div>
@@ -303,7 +341,7 @@ function createVehicleCard(vehicle) {
                     <span>Model Year</span>
 
                     <strong>
-                        ${vehicle.year}
+                        ${escapeHtml(vehicle.year || "N/A")}
                     </strong>
 
                 </div>
@@ -326,14 +364,16 @@ function createVehicleCard(vehicle) {
 
                 <button
                     class="outline-btn"
-                    data-details-id="${vehicle.id}">
+                    data-details-id="${escapeHtml(vehicle.id)}"
+                >
                     View Details
                 </button>
 
 
                 <button
                     class="health-btn"
-                    data-health-id="${vehicle.id}">
+                    data-health-id="${escapeHtml(vehicle.id)}"
+                >
                     Health Report
                 </button>
 
@@ -344,8 +384,12 @@ function createVehicleCard(vehicle) {
     `;
 
 
-    // View Details
-    const detailsBtn = card.querySelector("[data-details-id]");
+    // ========================================================
+    // VIEW DETAILS
+    // ========================================================
+
+    const detailsBtn =
+        card.querySelector("[data-details-id]");
 
     if (detailsBtn) {
 
@@ -356,13 +400,18 @@ function createVehicleCard(vehicle) {
                 vehicle.id
             );
 
-            window.location.href = "vehicle-details.html";
+            window.location.href =
+                "vehicle-details.html";
         });
     }
 
 
-    // Health Report
-    const healthBtn = card.querySelector("[data-health-id]");
+    // ========================================================
+    // HEALTH REPORT
+    // ========================================================
+
+    const healthBtn =
+        card.querySelector("[data-health-id]");
 
     if (healthBtn) {
 
@@ -373,25 +422,32 @@ function createVehicleCard(vehicle) {
                 vehicle.id
             );
 
-            window.location.href = "vehicle-health.html";
+            window.location.href =
+                "vehicle-health.html";
         });
     }
 
 
-    // Delete
-    const deleteBtn = card.querySelector("[data-delete-id]");
+    // ========================================================
+    // DELETE VEHICLE
+    // ========================================================
+
+    const deleteBtn =
+        card.querySelector("[data-delete-id]");
 
     if (deleteBtn) {
 
-        deleteBtn.addEventListener("click", () => {
+        deleteBtn.addEventListener("click", async () => {
 
             const confirmed = confirm(
-                `Delete ${vehicle.brand} ${vehicle.model}?\n\nThis action cannot be undone.`
+                `Delete ${vehicle.brand || "vehicle"} ${
+                    vehicle.model || ""
+                }?\n\nThis action cannot be undone.`
             );
 
             if (!confirmed) return;
 
-            deleteVehicle(vehicle.id);
+            await deleteVehicle(vehicle.id);
         });
     }
 
@@ -406,7 +462,10 @@ function createVehicleCard(vehicle) {
 
 function escapeHtml(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return "";
     }
 
@@ -425,53 +484,80 @@ function escapeHtml(value) {
 
 function renderVehicles(vehicles) {
 
-    const grid = document.querySelector(".vehicles-grid");
+    const grid =
+        document.querySelector(".vehicles-grid");
 
     if (!grid) {
-        console.error("Vehicle grid not found.");
+
+        console.error(
+            "Vehicle grid not found."
+        );
+
         return;
     }
 
 
-    // Remove existing hardcoded vehicle cards
-    grid.querySelectorAll(".vehicle-card").forEach(card => {
+    // Remove previous dynamic cards
+    grid.querySelectorAll(
+        ".vehicle-card:not(.add-vehicle-card)"
+    ).forEach(card => {
         card.remove();
     });
 
-
-    // Add Vehicle card already exists.
-    // We keep it at the end.
 
     const addVehicleCard =
         grid.querySelector(".add-vehicle-card");
 
 
-    // Empty state
-    if (!vehicles || vehicles.length === 0) {
+    // ========================================================
+    // EMPTY STATE
+    // ========================================================
 
-        const emptyCard = document.createElement("div");
+    if (
+        !Array.isArray(vehicles) ||
+        vehicles.length === 0
+    ) {
 
-        emptyCard.className = "vehicle-card";
+        const emptyCard =
+            document.createElement("div");
+
+        emptyCard.className =
+            "vehicle-card vehicle-empty-card";
 
         emptyCard.innerHTML = `
 
-            <div class="vehicle-card-body"
-                 style="text-align:center; padding:50px 25px;">
+            <div
+                class="vehicle-card-body"
+                style="
+                    text-align:center;
+                    padding:50px 25px;
+                "
+            >
 
-                <div style="font-size:48px; margin-bottom:15px;">
+                <div
+                    style="
+                        font-size:48px;
+                        margin-bottom:15px;
+                    "
+                >
                     🚘
                 </div>
 
                 <h3>No Vehicles Added</h3>
 
-                <p style="margin:12px 0 22px;">
-                    Add your first vehicle to start managing
-                    its health and maintenance.
+                <p
+                    style="
+                        margin:12px 0 22px;
+                    "
+                >
+                    Add your first vehicle to start
+                    managing its health and maintenance.
                 </p>
 
                 <button
                     class="health-btn"
-                    onclick="location.href='add-vehicle.html'">
+                    onclick="location.href='add-vehicle.html'"
+                >
                     + Add Vehicle
                 </button>
 
@@ -479,11 +565,19 @@ function renderVehicles(vehicles) {
 
         `;
 
+
         if (addVehicleCard) {
-            grid.insertBefore(emptyCard, addVehicleCard);
+
+            grid.insertBefore(
+                emptyCard,
+                addVehicleCard
+            );
+
         } else {
+
             grid.appendChild(emptyCard);
         }
+
 
         updateVehicleStats([]);
 
@@ -491,17 +585,26 @@ function renderVehicles(vehicles) {
     }
 
 
-    // Render real vehicles
+    // ========================================================
+    // RENDER REAL VEHICLES
+    // ========================================================
+
     vehicles.forEach(vehicle => {
 
-        const card = createVehicleCard(vehicle);
+        const card =
+            createVehicleCard(vehicle);
 
         if (addVehicleCard) {
-            grid.insertBefore(card, addVehicleCard);
+
+            grid.insertBefore(
+                card,
+                addVehicleCard
+            );
+
         } else {
+
             grid.appendChild(card);
         }
-
     });
 
 
@@ -516,9 +619,13 @@ function renderVehicles(vehicles) {
 function updateVehicleStats(vehicles) {
 
     const summaryCards =
-        document.querySelectorAll(".vehicle-summary-card");
+        document.querySelectorAll(
+            ".vehicle-summary-card"
+        );
 
-    if (!summaryCards.length) return;
+    if (!summaryCards.length) {
+        return;
+    }
 
 
     // Total vehicles
@@ -526,17 +633,20 @@ function updateVehicleStats(vehicles) {
         summaryCards[0]?.querySelector("strong");
 
     if (totalVehicles) {
-        totalVehicles.textContent = vehicles.length;
+
+        totalVehicles.textContent =
+            vehicles.length;
     }
 
 
-    // Backend vehicle API currently does not provide
-    // health status. Keep these values neutral.
+    // Health information not currently returned
+    // by backend vehicle API.
 
     const healthyVehicles =
         summaryCards[1]?.querySelector("strong");
 
     if (healthyVehicles) {
+
         healthyVehicles.textContent = "—";
     }
 
@@ -545,6 +655,7 @@ function updateVehicleStats(vehicles) {
         summaryCards[2]?.querySelector("strong");
 
     if (attentionVehicles) {
+
         attentionVehicles.textContent = "—";
     }
 }
@@ -568,29 +679,50 @@ async function loadVehicles() {
 
     try {
 
-        console.log("Loading vehicles...");
-
-
-        const response = await fetch(
-            `${API_BASE_URL}/vehicles`,
-            {
-                method: "GET",
-
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
-            }
+        console.log(
+            "Loading vehicles from:",
+            `${API_BASE_URL}/vehicles`
         );
 
 
-        // Unauthorized
-        if (response.status === 401 ||
-            response.status === 403) {
+        const response =
+            await fetch(
+                `${API_BASE_URL}/vehicles`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`,
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        console.log(
+            "Vehicles API status:",
+            response.status
+        );
+
+
+        // ====================================================
+        // UNAUTHORIZED
+        // ====================================================
+
+        if (
+            response.status === 401 ||
+            response.status === 403
+        ) {
 
             console.warn(
                 "Session expired or unauthorized."
             );
+
+            localStorage.removeItem("accessToken");
+            sessionStorage.removeItem("accessToken");
+            localStorage.removeItem("aiVehicleUser");
 
             redirectToLogin();
 
@@ -598,24 +730,51 @@ async function loadVehicles() {
         }
 
 
+        // ====================================================
+        // SERVER ERROR
+        // ====================================================
+
         if (!response.ok) {
 
-            const errorText =
-                await response.text();
+            let errorMessage =
+                "Unable to load vehicles.";
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+                errorMessage =
+                    errorData.detail ||
+                    errorData.message ||
+                    errorMessage;
+
+            } catch (jsonError) {
+
+                console.warn(
+                    "Could not parse API error response."
+                );
+            }
+
 
             console.error(
                 "Vehicles API Error:",
                 response.status,
-                errorText
+                errorMessage
             );
 
+
             showVehicleError(
-                "Unable to load vehicles. Please try again."
+                `${errorMessage} (HTTP ${response.status})`
             );
 
             return;
         }
 
+
+        // ====================================================
+        // SUCCESS
+        // ====================================================
 
         const vehicles =
             await response.json();
@@ -627,6 +786,22 @@ async function loadVehicles() {
         );
 
 
+        // Backend should return an array.
+        if (!Array.isArray(vehicles)) {
+
+            console.error(
+                "Unexpected vehicles response:",
+                vehicles
+            );
+
+            showVehicleError(
+                "Invalid response received from backend."
+            );
+
+            return;
+        }
+
+
         renderVehicles(vehicles);
 
     } catch (error) {
@@ -636,8 +811,9 @@ async function loadVehicles() {
             error
         );
 
+
         showVehicleError(
-            "Backend server is not reachable. Please make sure FastAPI is running."
+            "Unable to connect to the backend. Please check your internet connection or try again."
         );
     }
 }
@@ -652,27 +828,40 @@ async function deleteVehicle(vehicleId) {
     const token = getAccessToken();
 
     if (!token) {
+
         redirectToLogin();
+
         return;
     }
 
 
     try {
 
-        const response = await fetch(
-            `${API_BASE_URL}/vehicles/${vehicleId}`,
-            {
-                method: "DELETE",
+        const response =
+            await fetch(
+                `${API_BASE_URL}/vehicles/${vehicleId}`,
+                {
+                    method: "DELETE",
 
-                headers: {
-                    "Authorization": `Bearer ${token}`
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`,
+                        "Accept":
+                            "application/json"
+                    }
                 }
-            }
-        );
+            );
 
 
-        if (response.status === 401 ||
-            response.status === 403) {
+        // Unauthorized
+        if (
+            response.status === 401 ||
+            response.status === 403
+        ) {
+
+            localStorage.removeItem("accessToken");
+            sessionStorage.removeItem("accessToken");
+            localStorage.removeItem("aiVehicleUser");
 
             redirectToLogin();
 
@@ -680,20 +869,37 @@ async function deleteVehicle(vehicleId) {
         }
 
 
+        // Delete failed
         if (!response.ok) {
 
-            const errorText =
-                await response.text();
+            let errorMessage =
+                "Vehicle delete nahi ho paya.";
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+                errorMessage =
+                    errorData.detail ||
+                    errorData.message ||
+                    errorMessage;
+
+            } catch (error) {
+                console.warn(
+                    "Delete error response parse failed."
+                );
+            }
+
 
             console.error(
                 "Delete Vehicle Error:",
                 response.status,
-                errorText
+                errorMessage
             );
 
-            alert(
-                "Vehicle delete nahi ho paya."
-            );
+
+            alert(errorMessage);
 
             return;
         }
@@ -705,7 +911,7 @@ async function deleteVehicle(vehicleId) {
         );
 
 
-        // Reload vehicles after deletion
+        // Reload list
         await loadVehicles();
 
     } catch (error) {
@@ -729,13 +935,18 @@ async function deleteVehicle(vehicleId) {
 function showVehicleError(message) {
 
     const grid =
-        document.querySelector(".vehicles-grid");
+        document.querySelector(
+            ".vehicles-grid"
+        );
 
     if (!grid) return;
 
 
+    // Remove previous error
     const existingError =
-        document.querySelector(".vehicle-api-error");
+        grid.querySelector(
+            ".vehicle-api-error"
+        );
 
     if (existingError) {
         existingError.remove();
@@ -748,6 +959,7 @@ function showVehicleError(message) {
     errorBox.className =
         "vehicle-api-error";
 
+
     errorBox.style.cssText = `
         grid-column: 1 / -1;
         padding: 25px;
@@ -759,24 +971,70 @@ function showVehicleError(message) {
         margin-bottom: 20px;
     `;
 
+
     errorBox.innerHTML = `
-        <strong>Vehicle Loading Error</strong>
+
+        <strong>
+            Vehicle Loading Error
+        </strong>
+
         <br>
-        <span>${escapeHtml(message)}</span>
+
+        <span>
+            ${escapeHtml(message)}
+        </span>
+
+        <br><br>
+
+        <button
+            type="button"
+            class="health-btn"
+            id="retryVehiclesBtn"
+        >
+            Retry
+        </button>
+
     `;
 
 
     const addVehicleCard =
-        grid.querySelector(".add-vehicle-card");
+        grid.querySelector(
+            ".add-vehicle-card"
+        );
 
 
     if (addVehicleCard) {
+
         grid.insertBefore(
             errorBox,
             addVehicleCard
         );
+
     } else {
-        grid.appendChild(errorBox);
+
+        grid.appendChild(
+            errorBox
+        );
+    }
+
+
+    // Retry button
+    const retryBtn =
+        errorBox.querySelector(
+            "#retryVehiclesBtn"
+        );
+
+    if (retryBtn) {
+
+        retryBtn.addEventListener(
+            "click",
+            async () => {
+
+                errorBox.remove();
+
+                await loadVehicles();
+            }
+        );
     }
 }
 
@@ -787,40 +1045,61 @@ function showVehicleError(message) {
 
 function loadUserInfo() {
 
-    const user = getCurrentUser();
+    const user =
+        getCurrentUser();
 
     if (!user) return;
 
 
     // Sidebar name
     const sidebarName =
-        document.querySelector(".sidebar-user .user-info strong");
+        document.querySelector(
+            ".sidebar-user .user-info strong"
+        );
 
-    if (sidebarName && user.name) {
-        sidebarName.textContent = user.name;
+    if (
+        sidebarName &&
+        user.name
+    ) {
+
+        sidebarName.textContent =
+            user.name;
     }
 
 
-    // Sidebar initials
+    // Sidebar avatar
     const sidebarAvatar =
-        document.querySelector(".sidebar-user .user-avatar");
+        document.querySelector(
+            ".sidebar-user .user-avatar"
+        );
+
 
     // Topbar name
     const topbarName =
-        document.querySelector(".topbar-profile strong");
+        document.querySelector(
+            ".topbar-profile strong"
+        );
 
-    if (topbarName && user.name) {
-        topbarName.textContent = user.name;
+    if (
+        topbarName &&
+        user.name
+    ) {
+
+        topbarName.textContent =
+            user.name;
     }
 
 
     // Topbar avatar
     const topbarAvatar =
-        document.querySelector(".topbar-avatar");
+        document.querySelector(
+            ".topbar-avatar"
+        );
 
 
     const name =
-        user.name || "Vehicle Owner";
+        user.name ||
+        "Vehicle Owner";
 
 
     const initials =
@@ -828,17 +1107,24 @@ function loadUserInfo() {
             .split(" ")
             .filter(Boolean)
             .slice(0, 2)
-            .map(word => word.charAt(0).toUpperCase())
+            .map(
+                word =>
+                    word
+                        .charAt(0)
+                        .toUpperCase()
+            )
             .join("");
 
 
     if (sidebarAvatar) {
+
         sidebarAvatar.textContent =
             initials || "U";
     }
 
 
     if (topbarAvatar) {
+
         topbarAvatar.textContent =
             initials || "U";
     }
@@ -858,7 +1144,9 @@ document.addEventListener(
         );
 
 
-        const token = getAccessToken();
+        const token =
+            getAccessToken();
+
 
         if (!token) {
 
@@ -875,6 +1163,5 @@ document.addEventListener(
         loadUserInfo();
 
         await loadVehicles();
-
     }
 );
