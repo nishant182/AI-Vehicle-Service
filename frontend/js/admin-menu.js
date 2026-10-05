@@ -1,4 +1,4 @@
-const ADMIN_MENU_API = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://ai-vehicle-service.onrender.com";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
