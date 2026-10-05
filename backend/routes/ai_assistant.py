@@ -29,38 +29,43 @@ load_dotenv(
     override=True
 )
 
-OPENAI_API_KEY = os.getenv(
-    "OPENAI_API_KEY"
+OPENROUTER_API_KEY = os.getenv(
+    "OPENROUTER_API_KEY"
 )
 
-OPENAI_MODEL = os.getenv(
-    "OPENAI_MODEL",
-    "gpt-4.1-mini"
+OPENROUTER_MODEL = os.getenv(
+    "OPENROUTER_MODEL",
+    "openai/gpt-4o-mini"
 )
 
 
 # =========================================================
-# OPENAI CLIENT
+# OPENROUTER CLIENT
 # =========================================================
 
 client = None
 
-if OPENAI_API_KEY:
+if OPENROUTER_API_KEY:
 
     try:
 
         client = OpenAI(
-            api_key=OPENAI_API_KEY
+            api_key=OPENROUTER_API_KEY,
+            base_url="https://openrouter.ai/api/v1"
         )
+
+        print("OpenRouter client initialized successfully.")
 
     except Exception as e:
 
         print(
-            "OpenAI client initialization failed:",
+            "OpenRouter client initialization failed:",
             str(e)
         )
 
         client = None
+else:
+    print("OPENROUTER_API_KEY not found. Demo AI mode will be used.")
 
 
 # =========================================================
@@ -448,7 +453,7 @@ Reported Problem:
 
 
     # =====================================================
-    # TRY REAL OPENAI
+    # TRY REAL OPENROUTER
     # =====================================================
 
     if client:
@@ -457,7 +462,7 @@ Reported Problem:
 
             response = client.chat.completions.create(
 
-                model=OPENAI_MODEL,
+                model=OPENROUTER_MODEL,
 
                 messages=[
                     {
@@ -484,8 +489,22 @@ Reported Problem:
 
             if ai_text:
 
+                # Some models may wrap JSON in markdown fences.
+                cleaned_ai_text = ai_text.strip()
+
+                if cleaned_ai_text.startswith("```"):
+                    cleaned_ai_text = cleaned_ai_text.replace(
+                        "```json",
+                        "",
+                        1
+                    ).replace(
+                        "```",
+                        "",
+                        1
+                    ).strip()
+
                 ai_result = json.loads(
-                    ai_text
+                    cleaned_ai_text
                 )
 
 
@@ -529,7 +548,7 @@ Reported Problem:
                 ):
 
                     print(
-                        "AI Assistant Mode: OPENAI"
+                        "AI Assistant Mode: OPENROUTER"
                     )
 
 
@@ -557,12 +576,12 @@ Reported Problem:
         except Exception as e:
 
             print(
-                "OpenAI unavailable. "
+                "OpenRouter unavailable. "
                 "Switching to demo AI mode."
             )
 
             print(
-                "OpenAI Error:",
+                "OpenRouter Error:",
                 str(e)
             )
 
