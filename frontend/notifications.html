@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications - AI Vehicle Service</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- Notifications CSS -->
+    <link rel="stylesheet" href="css/notifications.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body class="notifications-page">
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- Logo -->
+        <div class="sidebar-header">
+
+            <div class="sidebar-logo">
+                <i class="fas fa-car"></i>
+            </div>
+
+            <div class="sidebar-brand">
+                <span>AI Vehicle</span>
+                <small>Service</small>
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+
+            <div class="sidebar-section-title">
+                MAIN
+            </div>
+
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html" class="nav-item">
+                <i class="fas fa-car"></i>
+                <span>My Vehicles</span>
+            </a>
+
+            <a href="vehicle-health.html" class="nav-item">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Vehicle Health</span>
+            </a>
+
+            <a href="ai-assistant.html" class="nav-item">
+                <i class="fas fa-robot"></i>
+                <span>AI Assistant</span>
+            </a>
+
+            <div class="sidebar-section-title">
+                SERVICES
+            </div>
+
+            <a href="maintenance.html" class="nav-item">
+                <i class="fas fa-screwdriver-wrench"></i>
+                <span>Maintenance</span>
+            </a>
+
+            <a href="service-centers.html" class="nav-item">
+                <i class="fas fa-location-dot"></i>
+                <span>Service Centers</span>
+            </a>
+
+            <a href="booking.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Booking</span>
+            </a>
+
+            <a href="booking-history.html" class="nav-item">
+                <i class="fas fa-clock-rotate-left"></i>
+                <span>Booking History</span>
+            </a>
+
+            <a href="service-history.html" class="nav-item">
+                <i class="fas fa-file-lines"></i>
+                <span>Service History</span>
+            </a>
+
+            <div class="sidebar-section-title">
+                ACCOUNT
+            </div>
+
+            <a href="notifications.html" class="nav-item active">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+                <span class="notification-count" id="sidebarNotificationCount">3</span>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+        <!-- Logout -->
+        <div class="sidebar-footer">
+
+            <a href="login.html" class="logout-btn">
+                <i class="fas fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+        <!-- Header -->
+        <div class="notifications-header">
+
+            <div class="notifications-title">
+                <h1>Notifications</h1>
+                <p>Stay updated with your vehicle and service activity.</p>
+            </div>
+
+            <div class="notification-header-actions">
+
+                <div class="unread-badge">
+                    <i class="fas fa-bell"></i>
+                    <span>
+                        <strong id="unreadCount">3</strong> Unread
+                    </span>
+                </div>
+
+                <button
+                    class="mark-all-btn"
+                    id="markAllReadBtn"
+                    type="button"
+                >
+                    <i class="fas fa-check-double"></i>
+                    Mark all as read
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             FILTERS
+        ========================================== -->
+
+        <div class="notification-filters">
+
+            <button
+                class="notification-filter active"
+                data-filter="all"
+                type="button"
+            >
+                All
+            </button>
+
+            <button
+                class="notification-filter"
+                data-filter="unread"
+                type="button"
+            >
+                Unread
+            </button>
+
+            <button
+                class="notification-filter"
+                data-filter="maintenance"
+                type="button"
+            >
+                Maintenance
+            </button>
+
+            <button
+                class="notification-filter"
+                data-filter="booking"
+                type="button"
+            >
+                Booking
+            </button>
+
+            <button
+                class="notification-filter"
+                data-filter="health"
+                type="button"
+            >
+                Vehicle Health
+            </button>
+
+            <button
+                class="notification-filter"
+                data-filter="ai"
+                type="button"
+            >
+                AI Recommendations
+            </button>
+
+        </div>
+
+
+        <!-- =========================================
+             NOTIFICATION CONTAINER
+        ========================================== -->
+
+        <div id="notificationsContainer">
+
+
+            <!-- =====================================
+                 TODAY
+            ====================================== -->
+
+            <section class="notification-group">
+
+                <div class="notification-group-title">
+                    Today
+                </div>
+
+                <div class="notification-list">
+
+
+                    <!-- Maintenance Notification -->
+                    <article
+                        class="notification-card unread"
+                        data-id="1"
+                        data-type="maintenance"
+                    >
+
+                        <span class="unread-dot"></span>
+
+                        <div class="notification-icon maintenance">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <div class="notification-top">
+
+                                <h3 class="notification-title">
+                                    Engine Oil Change Due
+                                </h3>
+
+                                <span class="notification-time">
+                                    10 min ago
+                                </span>
+
+                            </div>
+
+                            <p class="notification-description">
+                                Your vehicle is approaching the recommended
+                                engine oil service interval. Consider changing
+                                the engine oil within the next 500 km.
+                            </p>
+
+                            <span class="notification-category">
+                                Maintenance
+                            </span>
+
+                        </div>
+
+                        <div class="notification-actions">
+
+                            <button
+                                class="notification-read-btn"
+                                title="Mark as read"
+                                type="button"
+                            >
+                                <i class="fas fa-check"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Vehicle Health Notification -->
+                    <article
+                        class="notification-card unread"
+                        data-id="2"
+                        data-type="health"
+                    >
+
+                        <span class="unread-dot"></span>
+
+                        <div class="notification-icon health">
+                            <i class="fas fa-car-battery"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <div class="notification-top">
+
+                                <h3 class="notification-title">
+                                    Battery Health Alert
+                                </h3>
+
+                                <span class="notification-time">
+                                    1 hour ago
+                                </span>
+
+                            </div>
+
+                            <p class="notification-description">
+                                Vehicle health analysis indicates that the
+                                battery condition may require inspection.
+                                Check the battery before your next long trip.
+                            </p>
+
+                            <span class="notification-category">
+                                Vehicle Health
+                            </span>
+
+                        </div>
+
+                        <div class="notification-actions">
+
+                            <button
+                                class="notification-read-btn"
+                                title="Mark as read"
+                                type="button"
+                            >
+                                <i class="fas fa-check"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- AI Notification -->
+                    <article
+                        class="notification-card unread"
+                        data-id="3"
+                        data-type="ai"
+                    >
+
+                        <span class="unread-dot"></span>
+
+                        <div class="notification-icon ai">
+                            <i class="fas fa-robot"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <div class="notification-top">
+
+                                <h3 class="notification-title">
+                                    AI Maintenance Recommendation
+                                </h3>
+
+                                <span class="notification-time">
+                                    2 hours ago
+                                </span>
+
+                            </div>
+
+                            <p class="notification-description">
+                                Based on your vehicle information and service
+                                history, an inspection of the brake system is
+                                recommended.
+                            </p>
+
+                            <span class="notification-category">
+                                AI Recommendation
+                            </span>
+
+                        </div>
+
+                        <div class="notification-actions">
+
+                            <button
+                                class="notification-read-btn"
+                                title="Mark as read"
+                                type="button"
+                            >
+                                <i class="fas fa-check"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 YESTERDAY
+            ====================================== -->
+
+            <section class="notification-group">
+
+                <div class="notification-group-title">
+                    Yesterday
+                </div>
+
+                <div class="notification-list">
+
+
+                    <!-- Booking Notification -->
+                    <article
+                        class="notification-card"
+                        data-id="4"
+                        data-type="booking"
+                    >
+
+                        <span class="unread-dot"></span>
+
+                        <div class="notification-icon booking">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <div class="notification-top">
+
+                                <h3 class="notification-title">
+                                    Service Booking Confirmed
+                                </h3>
+
+                                <span class="notification-time">
+                                    Yesterday
+                                </span>
+
+                            </div>
+
+                            <p class="notification-description">
+                                Your general service booking has been
+                                confirmed. Please check your booking details
+                                for the scheduled date and time.
+                            </p>
+
+                            <span class="notification-category">
+                                Booking
+                            </span>
+
+                        </div>
+
+                        <div class="notification-actions">
+
+                            <button
+                                class="notification-read-btn"
+                                title="Mark as read"
+                                type="button"
+                            >
+                                <i class="fas fa-check"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Service Completed -->
+                    <article
+                        class="notification-card"
+                        data-id="5"
+                        data-type="booking"
+                    >
+
+                        <span class="unread-dot"></span>
+
+                        <div class="notification-icon success">
+                            <i class="fas fa-circle-check"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <div class="notification-top">
+
+                                <h3 class="notification-title">
+                                    Service Completed
+                                </h3>
+
+                                <span class="notification-time">
+                                    Yesterday
+                                </span>
+
+                            </div>
+
+                            <p class="notification-description">
+                                Your vehicle service has been completed.
+                                Service details can be viewed in your service
+                                history.
+                            </p>
+
+                            <span class="notification-category">
+                                Service Update
+                            </span>
+
+                        </div>
+
+                        <div class="notification-actions">
+
+                            <button
+                                class="notification-read-btn"
+                                title="Mark as read"
+                                type="button"
+                            >
+                                <i class="fas fa-check"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================
+                 EARLIER
+            ====================================== -->
+
+            <section class="notification-group">
+
+                <div class="notification-group-title">
+                    Earlier
+                </div>
+
+                <div class="notification-list">
+
+
+                    <!-- Information -->
+                    <article
+                        class="notification-card"
+                        data-id="6"
+                        data-type="health"
+                    >
+
+                        <span class="unread-dot"></span>
+
+                        <div class="notification-icon info">
+                            <i class="fas fa-circle-info"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <div class="notification-top">
+
+                                <h3 class="notification-title">
+                                    Vehicle Health Report Updated
+                                </h3>
+
+                                <span class="notification-time">
+                                    3 days ago
+                                </span>
+
+                            </div>
+
+                            <p class="notification-description">
+                                Your latest vehicle health information is
+                                available. Review engine, brakes, battery,
+                                tyres and oil condition.
+                            </p>
+
+                            <span class="notification-category">
+                                Vehicle Health
+                            </span>
+
+                        </div>
+
+                        <div class="notification-actions">
+
+                            <button
+                                class="notification-read-btn"
+                                title="Mark as read"
+                                type="button"
+                            >
+                                <i class="fas fa-check"></i>
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =========================================
+             EMPTY STATE
+        ========================================== -->
+
+        <div
+            class="notifications-empty"
+            id="notificationsEmpty"
+        >
+
+            <div class="empty-icon">
+                <i class="fas fa-bell-slash"></i>
+            </div>
+
+            <h3>No notifications found</h3>
+
+            <p>
+                You're all caught up. New vehicle updates will appear here.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- Notifications JavaScript -->
+    <script src="js/notifications.js"></script>
+
+</body>
+</html>

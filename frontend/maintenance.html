@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maintenance | VehicleAI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/maintenance.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">AI</div>
+
+            <div>
+                <h2>VehicleAI</h2>
+                <span>Smart Vehicle Care</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <div class="menu-title">MAIN</div>
+
+            <a href="dashboard.html">
+                <span>⌂</span> Dashboard
+            </a>
+
+            <a href="vehicles.html">
+                <span>🚗</span> My Vehicles
+            </a>
+
+            <a href="vehicle-health.html">
+                <span>♥</span> Vehicle Health
+            </a>
+
+            <a href="ai-assistant.html">
+                <span>✦</span> AI Assistant
+            </a>
+
+            <a href="maintenance.html" class="active">
+                <span>🔧</span> Maintenance
+            </a>
+
+
+            <div class="menu-title">SERVICES</div>
+
+            <a href="service-centers.html">
+                <span>📍</span> Service Centers
+            </a>
+
+            <a href="booking.html">
+                <span>📅</span> Booking
+            </a>
+
+            <a href="booking-history.html">
+                <span>📋</span> Booking History
+            </a>
+
+            <a href="service-history.html">
+                <span>🕘</span> Service History
+            </a>
+
+
+            <div class="menu-title">ACCOUNT</div>
+
+            <a href="notifications.html">
+                <span>🔔</span> Notifications
+            </a>
+
+            <a href="profile.html">
+                <span>👤</span> Profile
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+            ↪ Logout
+        </button>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="mobile-menu" onclick="toggleSidebar()">
+                ☰
+            </div>
+
+            <div>
+                <h1>Maintenance</h1>
+                <p>Smart maintenance planning for your vehicle</p>
+            </div>
+
+            <div class="topbar-user">
+                <div class="user-avatar">NB</div>
+
+                <div>
+                    <strong>Nishant Bhoyar</strong>
+                    <small>Vehicle Owner</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+        <section class="maintenance-content">
+
+            <!-- PAGE HEADING -->
+            <div class="page-heading">
+
+                <div>
+                    <h2>Maintenance Planner</h2>
+                    <p>
+                        Track upcoming maintenance and get AI-powered
+                        maintenance predictions.
+                    </p>
+                </div>
+
+                <div class="vehicle-selector-wrapper">
+
+                    <label for="vehicleSelect">
+                        Select Vehicle
+                    </label>
+
+                    <select id="vehicleSelect">
+                        <option value="">Loading vehicles...</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= SUMMARY CARDS ================= -->
+            <div class="maintenance-summary">
+
+                <div class="maintenance-card">
+
+                    <div class="maintenance-card-icon blue">
+                        🔧
+                    </div>
+
+                    <div>
+                        <span>Maintenance Health</span>
+                        <strong id="maintenanceHealth">
+                            82%
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="maintenance-card">
+
+                    <div class="maintenance-card-icon orange">
+                        ⏰
+                    </div>
+
+                    <div>
+                        <span>Upcoming Services</span>
+                        <strong id="upcomingCount">
+                            3
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="maintenance-card">
+
+                    <div class="maintenance-card-icon red">
+                        ⚠
+                    </div>
+
+                    <div>
+                        <span>Overdue</span>
+                        <strong id="overdueCount">
+                            1
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="maintenance-card">
+
+                    <div class="maintenance-card-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>Last Service</span>
+                        <strong id="lastService">
+                            2,500 km
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= AI PREDICTION ================= -->
+            <div class="ai-maintenance-card">
+
+                <div class="ai-maintenance-header">
+
+                    <div class="ai-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <h3>AI Maintenance Prediction</h3>
+
+                        <p>
+                            Based on vehicle information, mileage,
+                            previous service and maintenance history.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="ai-maintenance-body">
+
+                    <div class="prediction-status">
+
+                        <span class="status-dot"></span>
+
+                        <div>
+                            <strong id="predictionStatus">
+                                Maintenance attention recommended
+                            </strong>
+
+                            <p id="predictionText">
+                                Your vehicle may require routine maintenance
+                                based on its current mileage and service history.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="prediction-meta">
+
+                        <div>
+                            <span>Current Mileage</span>
+                            <strong id="currentMileage">
+                                42,580 km
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Last Service</span>
+                            <strong id="lastServiceDate">
+                                15 Sep 2026
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Next Check</span>
+                            <strong id="nextCheck">
+                                ~5,000 km
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TWO COLUMN SECTION ================= -->
+            <div class="maintenance-grid">
+
+
+                <!-- UPCOMING MAINTENANCE -->
+                <div class="maintenance-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Upcoming Maintenance</h3>
+                            <p>Recommended services for your vehicle</p>
+                        </div>
+
+                        <span class="panel-count" id="serviceCount">
+                            3 Services
+                        </span>
+
+                    </div>
+
+
+                    <div class="maintenance-list" id="maintenanceList">
+
+                        <!-- Service 1 -->
+                        <div class="maintenance-item">
+
+                            <div class="service-icon blue">
+                                🛢
+                            </div>
+
+                            <div class="service-info">
+
+                                <h4>Engine Oil Change</h4>
+
+                                <p>
+                                    Recommended around 45,000 km
+                                </p>
+
+                                <span class="service-date">
+                                    Due in ~2,420 km
+                                </span>
+
+                            </div>
+
+                            <span class="priority medium">
+                                Medium
+                            </span>
+
+                        </div>
+
+
+                        <!-- Service 2 -->
+                        <div class="maintenance-item">
+
+                            <div class="service-icon orange">
+                                🛞
+                            </div>
+
+                            <div class="service-info">
+
+                                <h4>Tyre Inspection</h4>
+
+                                <p>
+                                    Check tyre condition and pressure
+                                </p>
+
+                                <span class="service-date">
+                                    Recommended soon
+                                </span>
+
+                            </div>
+
+                            <span class="priority medium">
+                                Medium
+                            </span>
+
+                        </div>
+
+
+                        <!-- Service 3 -->
+                        <div class="maintenance-item">
+
+                            <div class="service-icon green">
+                                🔋
+                            </div>
+
+                            <div class="service-info">
+
+                                <h4>Battery Check</h4>
+
+                                <p>
+                                    Inspect battery health and terminals
+                                </p>
+
+                                <span class="service-date">
+                                    Due in ~3,800 km
+                                </span>
+
+                            </div>
+
+                            <span class="priority low">
+                                Low
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECOMMENDED SERVICES -->
+                <div class="maintenance-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recommended Services</h3>
+                            <p>Keep your vehicle in good condition</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommended-services">
+
+                        <div class="recommended-item">
+
+                            <div class="recommended-icon">
+                                🔧
+                            </div>
+
+                            <div>
+                                <h4>General Service</h4>
+
+                                <p>
+                                    Routine inspection and maintenance
+                                </p>
+                            </div>
+
+                            <button
+                                class="small-btn"
+                                onclick="bookService('General Service')">
+                                Book
+                            </button>
+
+                        </div>
+
+
+                        <div class="recommended-item">
+
+                            <div class="recommended-icon">
+                                🛢
+                            </div>
+
+                            <div>
+                                <h4>Engine Oil Change</h4>
+
+                                <p>
+                                    Oil and basic engine inspection
+                                </p>
+                            </div>
+
+                            <button
+                                class="small-btn"
+                                onclick="bookService('Engine Oil Change')">
+                                Book
+                            </button>
+
+                        </div>
+
+
+                        <div class="recommended-item">
+
+                            <div class="recommended-icon">
+                                🛞
+                            </div>
+
+                            <div>
+                                <h4>Wheel Alignment</h4>
+
+                                <p>
+                                    Check wheel alignment and balance
+                                </p>
+                            </div>
+
+                            <button
+                                class="small-btn"
+                                onclick="bookService('Wheel Alignment')">
+                                Book
+                            </button>
+
+                        </div>
+
+
+                        <div class="recommended-item">
+
+                            <div class="recommended-icon">
+                                ❄
+                            </div>
+
+                            <div>
+                                <h4>AC Service</h4>
+
+                                <p>
+                                    Inspect cooling and AC performance
+                                </p>
+                            </div>
+
+                            <button
+                                class="small-btn"
+                                onclick="bookService('AC Service')">
+                                Book
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= MAINTENANCE TIMELINE ================= -->
+            <div class="maintenance-panel timeline-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Maintenance Timeline</h3>
+                        <p>Your recent and upcoming maintenance activity</p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline">
+
+                    <div class="timeline-item completed">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-date">
+                                15 Sep 2026
+                            </span>
+
+                            <h4>General Service Completed</h4>
+
+                            <p>
+                                Routine vehicle inspection and service completed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item upcoming">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-date">
+                                Upcoming
+                            </span>
+
+                            <h4>Engine Oil Change</h4>
+
+                            <p>
+                                Recommended maintenance based on mileage.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item upcoming">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-date">
+                                Upcoming
+                            </span>
+
+                            <h4>Tyre Inspection</h4>
+
+                            <p>
+                                Check tyre condition and pressure.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ACTIONS ================= -->
+            <div class="maintenance-actions">
+
+                <a href="booking.html" class="primary-btn">
+                    📅 Book Service
+                </a>
+
+                <a href="service-history.html" class="secondary-btn">
+                    🕘 View Service History
+                </a>
+
+                <a href="vehicle-health.html" class="secondary-btn">
+                    ♥ Check Vehicle Health
+                </a>
+
+            </div>
+
+
+            <!-- ================= DISCLAIMER ================= -->
+            <div class="maintenance-disclaimer">
+
+                <strong>⚠ Important:</strong>
+
+                Maintenance predictions shown here are estimates
+                based on available vehicle information, mileage and
+                service history. They are intended to assist with
+                maintenance planning and should not be considered a
+                final mechanical diagnosis.
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/maintenance.js"></script>
+
+</body>
+</html>

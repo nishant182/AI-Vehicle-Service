@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Details | AI Vehicle Service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/vehicles.css">
+    <link rel="stylesheet" href="css/vehicle-details.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">AI</div>
+            <div>
+                <h2>Vehicle<span>AI</span></h2>
+                <small>Smart Vehicle Care</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-section-title">MAIN</p>
+
+            <a href="dashboard.html" class="sidebar-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="vehicles.html" class="sidebar-link active">
+                <span>🚗</span>
+                My Vehicles
+            </a>
+
+            <a href="vehicle-health.html" class="sidebar-link">
+                <span>❤</span>
+                Vehicle Health
+            </a>
+
+            <a href="ai-assistant.html" class="sidebar-link">
+                <span>✦</span>
+                AI Assistant
+            </a>
+
+            <a href="maintenance.html" class="sidebar-link">
+                <span>🔧</span>
+                Maintenance
+            </a>
+
+            <p class="nav-section-title">SERVICES</p>
+
+            <a href="service-centers.html" class="sidebar-link">
+                <span>📍</span>
+                Service Centers
+            </a>
+
+            <a href="booking.html" class="sidebar-link">
+                <span>📅</span>
+                Booking
+            </a>
+
+            <a href="booking-history.html" class="sidebar-link">
+                <span>📋</span>
+                Booking History
+            </a>
+
+            <a href="service-history.html" class="sidebar-link">
+                <span>🕘</span>
+                Service History
+            </a>
+
+            <p class="nav-section-title">ACCOUNT</p>
+
+            <a href="notifications.html" class="sidebar-link">
+                <span>🔔</span>
+                Notifications
+            </a>
+
+            <a href="profile.html" class="sidebar-link">
+                <span>👤</span>
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button id="logoutBtn" class="logout-btn">
+                <span>↪</span>
+                Logout
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="dashboard-main">
+
+        <!-- Topbar -->
+        <header class="dashboard-topbar">
+
+            <button class="mobile-menu-btn" id="menuBtn">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+                <h1>Vehicle Details</h1>
+                <p>View complete information about your vehicle</p>
+            </div>
+
+            <div class="topbar-user">
+                <div class="user-avatar">NB</div>
+
+                <div class="user-info">
+                    <strong>Nishant Bhoyar</strong>
+                    <span>Vehicle Owner</span>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- Content -->
+        <section class="vehicle-details-content">
+
+            <!-- Back -->
+            <a href="vehicles.html" class="details-back">
+                ← Back to My Vehicles
+            </a>
+
+
+            <!-- Vehicle Hero -->
+            <div class="vehicle-details-hero">
+
+                <div class="vehicle-hero-image">
+
+                    <img
+                        id="vehicleImage"
+                        src="assets/images/vehicles/default-car.jpg"
+                        alt="Vehicle"
+                        onerror="this.style.display='none'; document.getElementById('vehiclePlaceholder').style.display='flex';"
+                    >
+
+                    <div id="vehiclePlaceholder" class="vehicle-image-placeholder">
+                        🚗
+                    </div>
+
+                </div>
+
+
+                <div class="vehicle-hero-info">
+
+                    <div class="vehicle-status">
+                        <span class="status-dot"></span>
+                        Active Vehicle
+                    </div>
+
+                    <h2 id="vehicleName">Hyundai Creta</h2>
+
+                    <p id="vehicleRegistration">
+                        MP 00 XX 0000
+                    </p>
+
+                    <div class="vehicle-tags">
+                        <span id="vehicleYear">2024</span>
+                        <span id="vehicleFuel">Petrol</span>
+                        <span id="vehicleType">SUV</span>
+                    </div>
+
+                </div>
+
+
+                <div class="hero-health">
+
+                    <div class="health-circle">
+                        <strong id="healthScore">82</strong>
+                        <span>/100</span>
+                    </div>
+
+                    <p>Vehicle Health</p>
+
+                    <span class="health-status">
+                        Good Condition
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Information Grid -->
+            <div class="details-grid">
+
+
+                <!-- Vehicle Information -->
+                <div class="details-card">
+
+                    <div class="details-card-header">
+                        <div>
+                            <span class="card-icon">🚗</span>
+                            <div>
+                                <h3>Vehicle Information</h3>
+                                <p>Basic vehicle details</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-row">
+                            <span>Vehicle Type</span>
+                            <strong id="infoType">SUV</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Brand</span>
+                            <strong id="infoBrand">Hyundai</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Model</span>
+                            <strong id="infoModel">Creta</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Manufacturing Year</span>
+                            <strong id="infoYear">2024</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Registration Number</span>
+                            <strong id="infoRegistration">
+                                MP 00 XX 0000
+                            </strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Fuel Type</span>
+                            <strong id="infoFuel">Petrol</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Mileage -->
+                <div class="details-card">
+
+                    <div class="details-card-header">
+
+                        <div>
+                            <span class="card-icon">📊</span>
+
+                            <div>
+                                <h3>Mileage & Service</h3>
+                                <p>Current vehicle usage</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mileage-display">
+
+                        <span>Current Mileage</span>
+
+                        <strong>
+                            <span id="currentMileage">24,580</span>
+                            <small>KM</small>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-row">
+                            <span>Last Service KM</span>
+                            <strong id="lastServiceKm">
+                                22,100 KM
+                            </strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>KM Since Last Service</span>
+                            <strong id="kmSinceService">
+                                2,480 KM
+                            </strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Last Service Date</span>
+                            <strong id="lastServiceDate">
+                                15 Aug 2026
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Insurance -->
+                <div class="details-card">
+
+                    <div class="details-card-header">
+
+                        <div>
+                            <span class="card-icon">🛡</span>
+
+                            <div>
+                                <h3>Insurance</h3>
+                                <p>Insurance information</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="insurance-status">
+
+                        <div class="insurance-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong id="insuranceStatus">
+                                Insured
+                            </strong>
+
+                            <span id="insuranceMessage">
+                                Insurance is currently active
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-row">
+                            <span>Insurance Status</span>
+                            <strong id="infoInsuranceStatus">
+                                Active
+                            </strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span>Expiry Date</span>
+                            <strong id="insuranceExpiry">
+                                20 Dec 2026
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Health Overview -->
+                <div class="details-card health-overview-card">
+
+                    <div class="details-card-header">
+
+                        <div>
+                            <span class="card-icon">❤</span>
+
+                            <div>
+                                <h3>Health Overview</h3>
+                                <p>Vehicle system condition</p>
+                            </div>
+                        </div>
+
+                        <a href="vehicle-health.html" class="small-link">
+                            Full Report →
+                        </a>
+
+                    </div>
+
+
+                    <div class="health-system-list">
+
+                        <div class="system-row">
+
+                            <div>
+                                <span>Engine</span>
+                                <small>Excellent</small>
+                            </div>
+
+                            <strong>90%</strong>
+
+                            <div class="system-progress">
+                                <div style="width:90%"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div>
+                                <span>Brakes</span>
+                                <small>Good</small>
+                            </div>
+
+                            <strong>85%</strong>
+
+                            <div class="system-progress">
+                                <div style="width:85%"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div>
+                                <span>Battery</span>
+                                <small>Needs Attention</small>
+                            </div>
+
+                            <strong>72%</strong>
+
+                            <div class="system-progress">
+                                <div style="width:72%"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="system-row">
+
+                            <div>
+                                <span>Tyres</span>
+                                <small>Good</small>
+                            </div>
+
+                            <strong>88%</strong>
+
+                            <div class="system-progress">
+                                <div style="width:88%"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Actions -->
+            <div class="quick-actions-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Manage your vehicle easily</p>
+                    </div>
+
+                </div>
+
+
+                <div class="vehicle-action-grid">
+
+                    <a href="vehicle-health.html" class="vehicle-action-card">
+                        <div class="action-icon">❤</div>
+
+                        <div>
+                            <h3>Check Vehicle Health</h3>
+                            <p>View detailed health report</p>
+                        </div>
+
+                        <span>→</span>
+                    </a>
+
+
+                    <a href="ai-assistant.html" class="vehicle-action-card">
+                        <div class="action-icon">✦</div>
+
+                        <div>
+                            <h3>Ask AI Assistant</h3>
+                            <p>Get help with vehicle problems</p>
+                        </div>
+
+                        <span>→</span>
+                    </a>
+
+
+                    <a href="maintenance.html" class="vehicle-action-card">
+                        <div class="action-icon">🔧</div>
+
+                        <div>
+                            <h3>Maintenance</h3>
+                            <p>View upcoming maintenance</p>
+                        </div>
+
+                        <span>→</span>
+                    </a>
+
+
+                    <a href="booking.html" class="vehicle-action-card">
+                        <div class="action-icon">📅</div>
+
+                        <div>
+                            <h3>Book Service</h3>
+                            <p>Schedule vehicle service</p>
+                        </div>
+
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/vehicle-details.js"></script>
+
+</body>
+</html>

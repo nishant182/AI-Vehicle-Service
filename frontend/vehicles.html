@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Vehicles | AI Vehicle Service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/vehicles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body class="dashboard-page">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">🚗</div>
+
+            <div>
+                <h2>AI Vehicle</h2>
+                <span>Service</span>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">NB</div>
+
+            <div class="user-info">
+                <strong>Nishant</strong>
+                <span>Vehicle Owner</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN MENU</p>
+
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html" class="nav-item active">
+                <span class="nav-icon">🚘</span>
+                <span>My Vehicles</span>
+            </a>
+
+            <a href="vehicle-health.html" class="nav-item">
+                <span class="nav-icon">♥</span>
+                <span>Vehicle Health</span>
+            </a>
+
+            <a href="ai-assistant.html" class="nav-item">
+                <span class="nav-icon">✦</span>
+                <span>AI Assistant</span>
+            </a>
+
+            <a href="maintenance.html" class="nav-item">
+                <span class="nav-icon">🔧</span>
+                <span>Maintenance</span>
+            </a>
+
+            <p class="nav-title">SERVICES</p>
+
+            <a href="service-centers.html" class="nav-item">
+                <span class="nav-icon">📍</span>
+                <span>Service Centers</span>
+            </a>
+
+            <a href="booking.html" class="nav-item">
+                <span class="nav-icon">📅</span>
+                <span>Booking</span>
+            </a>
+
+            <a href="booking-history.html" class="nav-item">
+                <span class="nav-icon">🗓</span>
+                <span>Booking History</span>
+            </a>
+
+            <a href="service-history.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                <span>Service History</span>
+            </a>
+
+            <p class="nav-title">ACCOUNT</p>
+
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                <span>Notifications</span>
+                <span class="notification-count">3</span>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="logout-btn" id="logoutBtn">
+                <span>↪</span>
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-main">
+
+        <!-- TOPBAR -->
+
+        <header class="dashboard-topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    ☰
+                </button>
+
+                <div>
+                    <h1>My Vehicles</h1>
+                    <p>Manage all your vehicles in one place</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button
+                    class="topbar-icon"
+                    onclick="location.href='notifications.html'">
+                    🔔
+                    <span></span>
+                </button>
+
+                <div class="topbar-profile">
+
+                    <div class="topbar-avatar">
+                        NB
+                    </div>
+
+                    <div>
+                        <strong>Nishant Bhoyar</strong>
+                        <small>Vehicle Owner</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="dashboard-content vehicles-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="vehicles-page-header">
+
+                <div>
+                    <span class="card-label">
+                        VEHICLE MANAGEMENT
+                    </span>
+
+                    <h2>Your Vehicles</h2>
+
+                    <p>
+                        Add, manage and monitor your registered vehicles.
+                    </p>
+                </div>
+
+                <button
+                    class="add-vehicle-btn"
+                    onclick="location.href='add-vehicle.html'">
+
+                    <span>+</span>
+                    Add Vehicle
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= VEHICLE STATS ================= -->
+
+            <div class="vehicle-summary">
+
+                <div class="vehicle-summary-card">
+
+                    <div class="summary-icon blue">
+                        🚘
+                    </div>
+
+                    <div>
+                        <span>Total Vehicles</span>
+                        <strong>2</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="vehicle-summary-card">
+
+                    <div class="summary-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>Healthy Vehicles</span>
+                        <strong>1</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="vehicle-summary-card">
+
+                    <div class="summary-icon orange">
+                        🔧
+                    </div>
+
+                    <div>
+                        <span>Needs Attention</span>
+                        <strong>1</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= VEHICLE GRID ================= -->
+
+            <div class="vehicles-grid">
+
+
+                <!-- VEHICLE 1 -->
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-card-image">
+
+                        <div class="vehicle-photo-placeholder">
+                            🚙
+                        </div>
+
+                        <span class="vehicle-status healthy">
+                            ● Healthy
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-card-body">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <span class="vehicle-type">
+                                    SUV • Petrol
+                                </span>
+
+                                <h3>Hyundai Creta</h3>
+
+                            </div>
+
+                            <button
+                                class="more-btn"
+                                title="More options">
+                                ⋮
+                            </button>
+
+                        </div>
+
+
+                        <div class="registration-number">
+                            MP 00 XX 0000
+                        </div>
+
+
+                        <div class="vehicle-health-box">
+
+                            <div>
+
+                                <span>Vehicle Health</span>
+
+                                <strong>82/100</strong>
+
+                            </div>
+
+                            <div class="mini-health-bar">
+                                <span style="width:82%"></span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="vehicle-data">
+
+                            <div>
+                                <span>Current Mileage</span>
+                                <strong>24,580 km</strong>
+                            </div>
+
+                            <div>
+                                <span>Last Service</span>
+                                <strong>22,100 km</strong>
+                            </div>
+
+                            <div>
+                                <span>Model Year</span>
+                                <strong>2022</strong>
+                            </div>
+
+                            <div>
+                                <span>Last Service Date</span>
+                                <strong>12 Sep 2026</strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="vehicle-card-actions">
+
+                            <button
+                                class="outline-btn"
+                                onclick="location.href='vehicle-details.html'">
+
+                                View Details
+
+                            </button>
+
+                            <button
+                                class="health-btn"
+                                onclick="location.href='vehicle-health.html'">
+
+                                Health Report
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VEHICLE 2 -->
+
+                <div class="vehicle-card">
+
+                    <div class="vehicle-card-image second">
+
+                        <div class="vehicle-photo-placeholder">
+                            🚗
+                        </div>
+
+                        <span class="vehicle-status warning">
+                            ● Attention Needed
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-card-body">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <span class="vehicle-type">
+                                    Sedan • Petrol
+                                </span>
+
+                                <h3>Honda City</h3>
+
+                            </div>
+
+                            <button
+                                class="more-btn"
+                                title="More options">
+                                ⋮
+                            </button>
+
+                        </div>
+
+
+                        <div class="registration-number">
+                            MP 00 YY 1111
+                        </div>
+
+
+                        <div class="vehicle-health-box warning-health">
+
+                            <div>
+
+                                <span>Vehicle Health</span>
+
+                                <strong>68/100</strong>
+
+                            </div>
+
+                            <div class="mini-health-bar warning-bar">
+                                <span style="width:68%"></span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="vehicle-data">
+
+                            <div>
+                                <span>Current Mileage</span>
+                                <strong>41,280 km</strong>
+                            </div>
+
+                            <div>
+                                <span>Last Service</span>
+                                <strong>37,900 km</strong>
+                            </div>
+
+                            <div>
+                                <span>Model Year</span>
+                                <strong>2020</strong>
+                            </div>
+
+                            <div>
+                                <span>Last Service Date</span>
+                                <strong>18 Jul 2026</strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="vehicle-card-actions">
+
+                            <button
+                                class="outline-btn"
+                                onclick="location.href='vehicle-details.html'">
+
+                                View Details
+
+                            </button>
+
+                            <button
+                                class="health-btn"
+                                onclick="location.href='vehicle-health.html'">
+
+                                Health Report
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADD VEHICLE CARD -->
+
+                <div
+                    class="add-vehicle-card"
+                    onclick="location.href='add-vehicle.html'">
+
+                    <div class="add-vehicle-icon">
+                        +
+                    </div>
+
+                    <h3>Add New Vehicle</h3>
+
+                    <p>
+                        Register another vehicle to manage
+                        its health and maintenance.
+                    </p>
+
+                    <span>
+                        Add Vehicle →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= QUICK ACTIONS ================= -->
+
+            <div class="quick-actions-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="card-label">
+                            QUICK ACTIONS
+                        </span>
+
+                        <h3>Vehicle Management</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions-grid">
+
+                    <a href="add-vehicle.html" class="quick-action">
+                        <span>＋</span>
+                        <div>
+                            <strong>Add Vehicle</strong>
+                            <small>Register a new vehicle</small>
+                        </div>
+                    </a>
+
+                    <a href="vehicle-health.html" class="quick-action">
+                        <span>♥</span>
+                        <div>
+                            <strong>Check Health</strong>
+                            <small>View vehicle health</small>
+                        </div>
+                    </a>
+
+                    <a href="maintenance.html" class="quick-action">
+                        <span>🔧</span>
+                        <div>
+                            <strong>Maintenance</strong>
+                            <small>View upcoming services</small>
+                        </div>
+                    </a>
+
+                    <a href="booking.html" class="quick-action">
+                        <span>📅</span>
+                        <div>
+                            <strong>Book Service</strong>
+                            <small>Schedule a service</small>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <script src="js/vehicles.js"></script>
+
+</body>
+</html>

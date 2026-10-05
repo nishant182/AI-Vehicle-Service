@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Vehicle | AI Vehicle Service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/vehicles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body class="dashboard-page">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">🚗</div>
+
+            <div>
+                <h2>AI Vehicle</h2>
+                <span>Service</span>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">NB</div>
+
+            <div class="user-info">
+                <strong>Nishant</strong>
+                <span>Vehicle Owner</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN MENU</p>
+
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html" class="nav-item active">
+                <span class="nav-icon">🚘</span>
+                <span>My Vehicles</span>
+            </a>
+
+            <a href="vehicle-health.html" class="nav-item">
+                <span class="nav-icon">♥</span>
+                <span>Vehicle Health</span>
+            </a>
+
+            <a href="ai-assistant.html" class="nav-item">
+                <span class="nav-icon">✦</span>
+                <span>AI Assistant</span>
+            </a>
+
+            <a href="maintenance.html" class="nav-item">
+                <span class="nav-icon">🔧</span>
+                <span>Maintenance</span>
+            </a>
+
+            <p class="nav-title">SERVICES</p>
+
+            <a href="service-centers.html" class="nav-item">
+                <span class="nav-icon">📍</span>
+                <span>Service Centers</span>
+            </a>
+
+            <a href="booking.html" class="nav-item">
+                <span class="nav-icon">📅</span>
+                <span>Booking</span>
+            </a>
+
+            <a href="booking-history.html" class="nav-item">
+                <span class="nav-icon">🗓</span>
+                <span>Booking History</span>
+            </a>
+
+            <a href="service-history.html" class="nav-item">
+                <span class="nav-icon">📋</span>
+                <span>Service History</span>
+            </a>
+
+            <p class="nav-title">ACCOUNT</p>
+
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                <span>Notifications</span>
+                <span class="notification-count">3</span>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="logout-btn" id="logoutBtn">
+                <span>↪</span>
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-main">
+
+        <!-- TOPBAR -->
+
+        <header class="dashboard-topbar">
+
+            <div class="topbar-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Add Vehicle</h1>
+                    <p>Register your vehicle with AI Vehicle Service</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button
+                    class="topbar-icon"
+                    onclick="location.href='notifications.html'">
+                    🔔
+                    <span></span>
+                </button>
+
+                <div class="topbar-profile">
+
+                    <div class="topbar-avatar">
+                        NB
+                    </div>
+
+                    <div>
+                        <strong>Nishant Bhoyar</strong>
+                        <small>Vehicle Owner</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="dashboard-content add-vehicle-content">
+
+            <div class="add-vehicle-wrapper">
+
+
+                <!-- HEADER -->
+
+                <div class="add-form-header">
+
+                    <a href="vehicles.html" class="back-link">
+                        ← Back to My Vehicles
+                    </a>
+
+                    <span class="card-label">
+                        VEHICLE REGISTRATION
+                    </span>
+
+                    <h2>Add Your Vehicle</h2>
+
+                    <p>
+                        Enter your vehicle details to start tracking
+                        health, maintenance and service history.
+                    </p>
+
+                </div>
+
+
+                <!-- FORM CARD -->
+
+                <form id="vehicleForm" class="vehicle-form">
+
+
+                    <!-- ================= BASIC INFO ================= -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <div class="section-number">
+                                01
+                            </div>
+
+                            <div>
+                                <h3>Basic Vehicle Information</h3>
+                                <p>Tell us about your vehicle.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- Vehicle Type -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="vehicleType">
+                                    Vehicle Type
+                                    <span>*</span>
+                                </label>
+
+                                <select
+                                    id="vehicleType"
+                                    required>
+
+                                    <option value="">
+                                        Select vehicle type
+                                    </option>
+
+                                    <option value="car">
+                                        Car
+                                    </option>
+
+                                    <option value="bike">
+                                        Bike
+                                    </option>
+
+                                    <option value="scooter">
+                                        Scooter
+                                    </option>
+
+                                    <option value="suv">
+                                        SUV
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Brand -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="brand">
+                                    Brand
+                                    <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="brand"
+                                    placeholder="e.g. Hyundai"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Model -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="model">
+                                    Model
+                                    <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="model"
+                                    placeholder="e.g. Creta"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Year -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="year">
+                                    Manufacturing Year
+                                    <span>*</span>
+                                </label>
+
+                                <select
+                                    id="year"
+                                    required>
+
+                                    <option value="">
+                                        Select year
+                                    </option>
+
+                                    <option>2026</option>
+                                    <option>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+                                    <option>2021</option>
+                                    <option>2020</option>
+                                    <option>2019</option>
+                                    <option>2018</option>
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Registration -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="registration">
+                                    Registration Number
+                                    <span>*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="registration"
+                                    placeholder="e.g. MP 00 XX 0000"
+                                    required>
+
+                            </div>
+
+
+                            <!-- Fuel -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="fuelType">
+                                    Fuel Type
+                                    <span>*</span>
+                                </label>
+
+                                <select
+                                    id="fuelType"
+                                    required>
+
+                                    <option value="">
+                                        Select fuel type
+                                    </option>
+
+                                    <option value="petrol">
+                                        Petrol
+                                    </option>
+
+                                    <option value="diesel">
+                                        Diesel
+                                    </option>
+
+                                    <option value="cng">
+                                        CNG
+                                    </option>
+
+                                    <option value="electric">
+                                        Electric
+                                    </option>
+
+                                    <option value="hybrid">
+                                        Hybrid
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= MILEAGE ================= -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <div class="section-number">
+                                02
+                            </div>
+
+                            <div>
+                                <h3>Mileage & Service Information</h3>
+                                <p>Help us understand your vehicle's current condition.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- Current KM -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="currentMileage">
+                                    Current Mileage (KM)
+                                    <span>*</span>
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="currentMileage"
+                                    min="0"
+                                    placeholder="e.g. 24580"
+                                    required>
+
+                                <small>
+                                    Current odometer reading
+                                </small>
+
+                            </div>
+
+
+                            <!-- Last Service KM -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="lastServiceKm">
+                                    Last Service KM
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="lastServiceKm"
+                                    min="0"
+                                    placeholder="e.g. 22100">
+
+                            </div>
+
+
+                            <!-- Last Service Date -->
+
+                            <div class="vehicle-form-group">
+
+                                <label for="lastServiceDate">
+                                    Last Service Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="lastServiceDate">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= INSURANCE ================= -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <div class="section-number">
+                                03
+                            </div>
+
+                            <div>
+                                <h3>Insurance Information</h3>
+                                <p>Keep your insurance information available for reminders.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="vehicle-form-group">
+
+                                <label for="insuranceStatus">
+                                    Insurance Status
+                                </label>
+
+                                <select id="insuranceStatus">
+
+                                    <option value="">
+                                        Select status
+                                    </option>
+
+                                    <option value="active">
+                                        Active
+                                    </option>
+
+                                    <option value="expired">
+                                        Expired
+                                    </option>
+
+                                    <option value="not-available">
+                                        Not Available
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="vehicle-form-group">
+
+                                <label for="insuranceExpiry">
+                                    Insurance Expiry Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="insuranceExpiry">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= IMAGE ================= -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-heading">
+
+                            <div class="section-number">
+                                04
+                            </div>
+
+                            <div>
+                                <h3>Vehicle Image</h3>
+                                <p>Add an image of your vehicle.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="vehicle-upload-area">
+
+                            <input
+                                type="file"
+                                id="vehicleImage"
+                                accept="image/*"
+                                hidden>
+
+
+                            <label
+                                for="vehicleImage"
+                                class="upload-box"
+                                id="uploadBox">
+
+                                <div class="upload-icon">
+                                    ↑
+                                </div>
+
+                                <strong>
+                                    Upload Vehicle Image
+                                </strong>
+
+                                <span>
+                                    JPG, JPEG or PNG • Max 5 MB
+                                </span>
+
+                            </label>
+
+
+                            <div
+                                id="imagePreview"
+                                class="image-preview">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= MESSAGE ================= -->
+
+                    <p
+                        id="vehicleMessage"
+                        class="vehicle-message">
+                    </p>
+
+
+                    <!-- ================= ACTIONS ================= -->
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="cancel-btn"
+                            onclick="location.href='vehicles.html'">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="save-vehicle-btn">
+
+                            Save Vehicle →
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/add-vehicle.js"></script>
+
+</body>
+</html>

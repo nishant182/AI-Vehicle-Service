@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Service History | AI Vehicle Service</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Global -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- Dashboard -->
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css"
+    >
+
+    <!-- Service History -->
+    <link
+        rel="stylesheet"
+        href="css/service-history.css"
+    >
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <i class="fas fa-car"></i>
+        </div>
+
+        <div class="sidebar-brand">
+            <strong>AI Vehicle <span>Service</span></strong>
+            <small>Smart Vehicle Care</small>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+
+        <!-- MAIN -->
+        <div class="sidebar-section-title">MAIN</div>
+
+        <a href="dashboard.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="vehicles.html">
+            <i class="fas fa-car-side"></i>
+            <span>My Vehicles</span>
+        </a>
+
+        <a href="vehicle-health.html">
+            <i class="fas fa-heartbeat"></i>
+            <span>Vehicle Health</span>
+        </a>
+
+        <a href="ai-assistant.html">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+        </a>
+
+        <a href="maintenance.html">
+            <i class="fas fa-tools"></i>
+            <span>Maintenance</span>
+        </a>
+
+
+        <!-- SERVICES -->
+        <div class="sidebar-section-title">SERVICES</div>
+
+        <a href="service-centers.html">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Service Centers</span>
+        </a>
+
+        <a href="booking.html">
+            <i class="fas fa-calendar-check"></i>
+            <span>Booking</span>
+        </a>
+
+        <a href="booking-history.html">
+            <i class="fas fa-history"></i>
+            <span>Booking History</span>
+        </a>
+
+        <a href="service-history.html">
+            <i class="fas fa-file-invoice"></i>
+            <span>Service History</span>
+        </a>
+
+
+        <!-- ACCOUNT -->
+        <div class="sidebar-section-title">ACCOUNT</div>
+
+        <a href="notifications.html">
+            <i class="fas fa-bell"></i>
+            <span>Notifications</span>
+        </a>
+
+        <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+    </nav>
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+        <a href="#" class="logout-btn" onclick="logoutUser(event)">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="topbar-title">
+                    Service History
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        NB
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>Nishant</strong>
+
+                        <span>Vehicle Owner</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             SERVICE HISTORY CONTENT
+             ================================================= -->
+
+        <section class="service-history-content">
+
+            <!-- PAGE HEADING -->
+
+            <div class="history-page-heading">
+
+                <div class="history-heading-text">
+
+                    <h1>
+                        Service History
+                    </h1>
+
+                    <p>
+                        Track your vehicle's previous services,
+                        maintenance and service expenses.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="booking.html"
+                    class="new-service-btn"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Book New Service
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY CARDS
+                 ================================================= -->
+
+            <div class="service-summary-stats">
+
+                <!-- Total Services -->
+
+                <div class="service-stat-card">
+
+                    <div class="service-stat-content">
+
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-wrench"></i>
+                        </div>
+
+                        <div class="stat-text">
+
+                            <span>
+                                Total Services
+                            </span>
+
+                            <strong id="totalServices">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- This Year -->
+
+                <div class="service-stat-card">
+
+                    <div class="service-stat-content">
+
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <div class="stat-text">
+
+                            <span>
+                                This Year
+                            </span>
+
+                            <strong id="yearServices">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Cost -->
+
+                <div class="service-stat-card">
+
+                    <div class="service-stat-content">
+
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </div>
+
+                        <div class="stat-text">
+
+                            <span>
+                                Total Spent
+                            </span>
+
+                            <strong id="totalSpent">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Last Service -->
+
+                <div class="service-stat-card">
+
+                    <div class="service-stat-content">
+
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+
+                        <div class="stat-text">
+
+                            <span>
+                                Last Service
+                            </span>
+
+                            <strong id="lastServiceDate">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 VEHICLE FILTER
+                 ================================================= -->
+
+            <div class="service-filter-card">
+
+                <div class="vehicle-filter">
+
+                    <label for="vehicleFilter">
+                        <i class="fa-solid fa-car"></i>
+                        Vehicle
+                    </label>
+
+                    <select id="vehicleFilter">
+
+                        <option value="all">
+                            All Vehicles
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="service-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="serviceSearch"
+                        placeholder="Search service, center or vehicle..."
+                    >
+
+                </div>
+
+
+                <select id="serviceTypeFilter">
+
+                    <option value="all">
+                        All Services
+                    </option>
+
+                    <option value="General Service">
+                        General Service
+                    </option>
+
+                    <option value="Engine Oil Change">
+                        Engine Oil Change
+                    </option>
+
+                    <option value="Brake Service">
+                        Brake Service
+                    </option>
+
+                    <option value="Battery Check">
+                        Battery Check
+                    </option>
+
+                    <option value="Tyre Service">
+                        Tyre Service
+                    </option>
+
+                    <option value="AC Service">
+                        AC Service
+                    </option>
+
+                    <option value="Washing">
+                        Washing
+                    </option>
+
+                    <option value="Wheel Alignment">
+                        Wheel Alignment
+                    </option>
+
+                    <option value="Denting & Painting">
+                        Denting & Painting
+                    </option>
+
+                    <option value="EV Checkup">
+                        EV Checkup
+                    </option>
+
+                </select>
+
+
+                <select id="serviceSort">
+
+                    <option value="newest">
+                        Newest First
+                    </option>
+
+                    <option value="oldest">
+                        Oldest First
+                    </option>
+
+                    <option value="cost-high">
+                        Cost: High to Low
+                    </option>
+
+                    <option value="cost-low">
+                        Cost: Low to High
+                    </option>
+
+                    <option value="mileage-high">
+                        Mileage: High to Low
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 RESULT HEADER
+                 ================================================= -->
+
+            <div class="service-result-header">
+
+                <div>
+
+                    <h3>
+                        Service Records
+                    </h3>
+
+                    <span id="serviceResultCount">
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="clearServiceFilters"
+                    class="clear-service-filters"
+                >
+                    Clear Filters
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 SERVICE HISTORY LIST
+                 ================================================= -->
+
+            <div
+                id="serviceHistoryList"
+                class="service-history-list"
+            >
+                <!-- JavaScript records will appear here -->
+            </div>
+
+
+            <!-- =================================================
+                 EMPTY STATE
+                 ================================================= -->
+
+            <div
+                id="serviceEmptyState"
+                class="service-empty-state"
+            >
+
+                <div class="service-empty-icon">
+                    <i class="fa-solid fa-file-circle-xmark"></i>
+                </div>
+
+                <h3>
+                    No Service Records
+                </h3>
+
+                <p>
+                    Your completed vehicle services will
+                    appear here once service history is available.
+                </p>
+
+                <a
+                    href="booking.html"
+                    class="new-service-btn"
+                >
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    Book a Service
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 INFO BANNER
+                 ================================================= -->
+
+            <div class="service-history-info">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <p>
+                    <strong>Service History:</strong>
+                    This section keeps a record of your vehicle
+                    services, service dates, mileage, service
+                    centers and estimated service costs.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
+    <script src="js/dashboard.js"></script>
+
+    <script src="js/service-history.js"></script>
+
+</body>
+</html>

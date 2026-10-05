@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Service Centers | VehicleAI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/service-centers.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">AI</div>
+
+            <div>
+                <h2>VehicleAI</h2>
+                <span>Smart Vehicle Care</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <div class="menu-title">MAIN</div>
+
+            <a href="dashboard.html">
+                <span>⌂</span> Dashboard
+            </a>
+
+            <a href="vehicles.html">
+                <span>🚗</span> My Vehicles
+            </a>
+
+            <a href="vehicle-health.html">
+                <span>♥</span> Vehicle Health
+            </a>
+
+            <a href="ai-assistant.html">
+                <span>✦</span> AI Assistant
+            </a>
+
+            <a href="maintenance.html">
+                <span>🔧</span> Maintenance
+            </a>
+
+
+            <div class="menu-title">SERVICES</div>
+
+            <a href="service-centers.html" class="active">
+                <span>📍</span> Service Centers
+            </a>
+
+            <a href="booking.html">
+                <span>📅</span> Booking
+            </a>
+
+            <a href="booking-history.html">
+                <span>📋</span> Booking History
+            </a>
+
+            <a href="service-history.html">
+                <span>🕘</span> Service History
+            </a>
+
+
+            <div class="menu-title">ACCOUNT</div>
+
+            <a href="notifications.html">
+                <span>🔔</span> Notifications
+            </a>
+
+            <a href="profile.html">
+                <span>👤</span> Profile
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+            ↪ Logout
+        </button>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="mobile-menu" onclick="toggleSidebar()">
+                ☰
+            </div>
+
+            <div>
+                <h1>Service Centers</h1>
+                <p>Find and book vehicle service near you</p>
+            </div>
+
+            <div class="topbar-user">
+
+                <div class="user-avatar">
+                    NB
+                </div>
+
+                <div>
+                    <strong>Nishant Bhoyar</strong>
+                    <small>Vehicle Owner</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE CONTENT ================= -->
+        <section class="service-center-content">
+
+
+            <!-- PAGE HEADING -->
+            <div class="page-heading">
+
+                <div>
+                    <h2>Find a Service Center</h2>
+
+                    <p>
+                        Explore available services, pricing,
+                        timings and ratings.
+                    </p>
+                </div>
+
+                <button
+                    class="location-btn"
+                    id="locationBtn">
+                    📍 Use My Location
+                </button>
+
+            </div>
+
+
+            <!-- ================= SEARCH AREA ================= -->
+            <div class="service-search-card">
+
+                <div class="search-box">
+
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search service center or location...">
+
+                </div>
+
+
+                <select id="serviceFilter">
+
+                    <option value="all">
+                        All Services
+                    </option>
+
+                    <option value="General Service">
+                        General Service
+                    </option>
+
+                    <option value="Engine Oil Change">
+                        Engine Oil Change
+                    </option>
+
+                    <option value="Brake Service">
+                        Brake Service
+                    </option>
+
+                    <option value="Battery Check">
+                        Battery Check
+                    </option>
+
+                    <option value="Tyre Service">
+                        Tyre Service
+                    </option>
+
+                    <option value="AC Service">
+                        AC Service
+                    </option>
+
+                    <option value="Washing">
+                        Washing
+                    </option>
+
+                    <option value="Wheel Alignment">
+                        Wheel Alignment
+                    </option>
+
+                    <option value="Denting & Painting">
+                        Denting & Painting
+                    </option>
+
+                    <option value="EV Checkup">
+                        EV Checkup
+                    </option>
+
+                </select>
+
+
+                <select id="ratingFilter">
+
+                    <option value="all">
+                        Any Rating
+                    </option>
+
+                    <option value="4.5">
+                        4.5+ Rating
+                    </option>
+
+                    <option value="4">
+                        4.0+ Rating
+                    </option>
+
+                    <option value="3.5">
+                        3.5+ Rating
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================= RESULT HEADER ================= -->
+            <div class="result-header">
+
+                <div>
+                    <h3>Available Service Centers</h3>
+
+                    <span id="resultCount">
+                        4 service centers found
+                    </span>
+                </div>
+
+                <select id="sortSelect">
+
+                    <option value="rating">
+                        Sort by Rating
+                    </option>
+
+                    <option value="price-low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price-high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="name">
+                        Name
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ================= SERVICE CENTER LIST ================= -->
+            <div
+                class="service-center-grid"
+                id="serviceCenterList">
+
+
+                <!-- CENTER 1 -->
+                <article
+                    class="service-center-card"
+                    data-name="AutoCare Motors"
+                    data-rating="4.8"
+                    data-price="1500"
+                    data-services="General Service,Engine Oil Change,Brake Service,Battery Check,Tyre Service,AC Service,Wheel Alignment">
+
+                    <div class="center-image">
+
+                        <div class="center-image-placeholder">
+                            🚗
+                        </div>
+
+                        <span class="open-badge">
+                            Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="center-body">
+
+                        <div class="center-title-row">
+
+                            <div>
+                                <h3>AutoCare Motors</h3>
+
+                                <p>
+                                    📍 City Service Road
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                ★ 4.8
+                            </div>
+
+                        </div>
+
+
+                        <div class="center-distance">
+                            📍 2.4 km away
+                        </div>
+
+
+                        <div class="center-info">
+
+                            <div>
+                                <span>🕘</span>
+                                <p>
+                                    9:00 AM – 8:00 PM
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>💰</span>
+                                <p>
+                                    From ₹1,500
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-tags">
+
+                            <span>General Service</span>
+                            <span>Oil Change</span>
+                            <span>Brake Service</span>
+                            <span>AC Service</span>
+
+                        </div>
+
+
+                        <div class="center-footer">
+
+                            <a
+                                href="tel:+919999999999"
+                                class="call-btn">
+                                ☎ Call
+                            </a>
+
+                            <button
+                                class="book-center-btn"
+                                onclick="bookCenter('AutoCare Motors')">
+                                Book Service
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CENTER 2 -->
+                <article
+                    class="service-center-card"
+                    data-name="DriveCare Service Hub"
+                    data-rating="4.6"
+                    data-price="1200"
+                    data-services="General Service,Engine Oil Change,Tyre Service,Battery Check,Washing,Wheel Alignment">
+
+                    <div class="center-image">
+
+                        <div class="center-image-placeholder">
+                            🔧
+                        </div>
+
+                        <span class="open-badge">
+                            Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="center-body">
+
+                        <div class="center-title-row">
+
+                            <div>
+                                <h3>DriveCare Service Hub</h3>
+
+                                <p>
+                                    📍 Main Ring Road
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                ★ 4.6
+                            </div>
+
+                        </div>
+
+
+                        <div class="center-distance">
+                            📍 3.7 km away
+                        </div>
+
+
+                        <div class="center-info">
+
+                            <div>
+                                <span>🕘</span>
+                                <p>
+                                    8:30 AM – 7:30 PM
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>💰</span>
+                                <p>
+                                    From ₹1,200
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-tags">
+
+                            <span>General Service</span>
+                            <span>Tyre Service</span>
+                            <span>Battery Check</span>
+                            <span>Washing</span>
+
+                        </div>
+
+
+                        <div class="center-footer">
+
+                            <a
+                                href="tel:+918888888888"
+                                class="call-btn">
+                                ☎ Call
+                            </a>
+
+                            <button
+                                class="book-center-btn"
+                                onclick="bookCenter('DriveCare Service Hub')">
+                                Book Service
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CENTER 3 -->
+                <article
+                    class="service-center-card"
+                    data-name="Prime Auto Service"
+                    data-rating="4.5"
+                    data-price="1800"
+                    data-services="General Service,Brake Service,Engine Oil Change,AC Service,Denting & Painting,Wheel Alignment">
+
+                    <div class="center-image">
+
+                        <div class="center-image-placeholder">
+                            🛠️
+                        </div>
+
+                        <span class="open-badge">
+                            Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="center-body">
+
+                        <div class="center-title-row">
+
+                            <div>
+                                <h3>Prime Auto Service</h3>
+
+                                <p>
+                                    📍 Central Auto Market
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                ★ 4.5
+                            </div>
+
+                        </div>
+
+
+                        <div class="center-distance">
+                            📍 5.1 km away
+                        </div>
+
+
+                        <div class="center-info">
+
+                            <div>
+                                <span>🕘</span>
+                                <p>
+                                    9:00 AM – 9:00 PM
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>💰</span>
+                                <p>
+                                    From ₹1,800
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-tags">
+
+                            <span>Brake Service</span>
+                            <span>AC Service</span>
+                            <span>Wheel Alignment</span>
+                            <span>Denting</span>
+
+                        </div>
+
+
+                        <div class="center-footer">
+
+                            <a
+                                href="tel:+917777777777"
+                                class="call-btn">
+                                ☎ Call
+                            </a>
+
+                            <button
+                                class="book-center-btn"
+                                onclick="bookCenter('Prime Auto Service')">
+                                Book Service
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CENTER 4 -->
+                <article
+                    class="service-center-card"
+                    data-name="EV & Auto Care Center"
+                    data-rating="4.3"
+                    data-price="2000"
+                    data-services="General Service,Battery Check,Tyre Service,AC Service,EV Checkup,Wheel Alignment">
+
+                    <div class="center-image">
+
+                        <div class="center-image-placeholder">
+                            ⚡
+                        </div>
+
+                        <span class="open-badge">
+                            Open
+                        </span>
+
+                    </div>
+
+
+                    <div class="center-body">
+
+                        <div class="center-title-row">
+
+                            <div>
+                                <h3>EV & Auto Care Center</h3>
+
+                                <p>
+                                    📍 Highway Service Zone
+                                </p>
+                            </div>
+
+                            <div class="rating">
+                                ★ 4.3
+                            </div>
+
+                        </div>
+
+
+                        <div class="center-distance">
+                            📍 6.8 km away
+                        </div>
+
+
+                        <div class="center-info">
+
+                            <div>
+                                <span>🕘</span>
+                                <p>
+                                    8:00 AM – 8:00 PM
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>💰</span>
+                                <p>
+                                    From ₹2,000
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-tags">
+
+                            <span>EV Checkup</span>
+                            <span>Battery Check</span>
+                            <span>AC Service</span>
+                            <span>Tyre Service</span>
+
+                        </div>
+
+
+                        <div class="center-footer">
+
+                            <a
+                                href="tel:+916666666666"
+                                class="call-btn">
+                                ☎ Call
+                            </a>
+
+                            <button
+                                class="book-center-btn"
+                                onclick="bookCenter('EV & Auto Care Center')">
+                                Book Service
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <!-- ================= EMPTY STATE ================= -->
+            <div
+                class="empty-state"
+                id="emptyState"
+                style="display:none;">
+
+                <div class="empty-icon">
+                    🔍
+                </div>
+
+                <h3>No Service Centers Found</h3>
+
+                <p>
+                    Try changing your search or filter.
+                </p>
+
+                <button
+                    class="reset-filter-btn"
+                    onclick="resetFilters()">
+                    Reset Filters
+                </button>
+
+            </div>
+
+
+            <!-- ================= INFORMATION ================= -->
+            <div class="service-info-banner">
+
+                <div class="info-banner-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <h3>Smart Service Center Discovery</h3>
+
+                    <p>
+                        Find service centers based on available
+                        services, location, ratings and estimated
+                        pricing. Booking information can be
+                        connected to the backend service-center
+                        database later.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/service-centers.js"></script>
+
+</body>
+</html>

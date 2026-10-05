@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Service | VehicleAI</title>
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+         SIDEBAR
+         ========================================== -->
+
+    <aside class="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <i class="fas fa-car"></i>
+        </div>
+
+        <div class="sidebar-brand">
+            <strong>AI Vehicle <span>Service</span></strong>
+            <small>Smart Vehicle Care</small>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+
+        <!-- MAIN -->
+        <div class="sidebar-section-title">MAIN</div>
+
+        <a href="dashboard.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="vehicles.html">
+            <i class="fas fa-car-side"></i>
+            <span>My Vehicles</span>
+        </a>
+
+        <a href="vehicle-health.html">
+            <i class="fas fa-heartbeat"></i>
+            <span>Vehicle Health</span>
+        </a>
+
+        <a href="ai-assistant.html">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+        </a>
+
+        <a href="maintenance.html">
+            <i class="fas fa-tools"></i>
+            <span>Maintenance</span>
+        </a>
+
+
+        <!-- SERVICES -->
+        <div class="sidebar-section-title">SERVICES</div>
+
+        <a href="service-centers.html">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Service Centers</span>
+        </a>
+
+        <a href="booking.html">
+            <i class="fas fa-calendar-check"></i>
+            <span>Booking</span>
+        </a>
+
+        <a href="booking-history.html">
+            <i class="fas fa-history"></i>
+            <span>Booking History</span>
+        </a>
+
+        <a href="service-history.html">
+            <i class="fas fa-file-invoice"></i>
+            <span>Service History</span>
+        </a>
+
+
+        <!-- ACCOUNT -->
+        <div class="sidebar-section-title">ACCOUNT</div>
+
+        <a href="notifications.html">
+            <i class="fas fa-bell"></i>
+            <span>Notifications</span>
+        </a>
+
+        <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+    </nav>
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+        <a href="#" class="logout-btn" onclick="logoutUser(event)">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
+
+    <main class="main-content">
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Toggle menu"
+                >
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Service Booking</h1>
+                    <p>Book professional service for your vehicle</p>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        NB
+                    </div>
+
+                    <div class="user-info">
+                        <strong>Nishant Bhoyar</strong>
+                        <span>Vehicle Owner</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==========================================
+             BOOKING CONTENT
+             ========================================== -->
+
+        <section class="booking-content">
+
+
+            <!-- Page Heading -->
+
+            <div class="booking-page-heading">
+
+                <div>
+                    <h2>Book a Service</h2>
+
+                    <p>
+                        Select your vehicle, service, service center,
+                        date and preferred time.
+                    </p>
+                </div>
+
+                <div class="booking-status-badge">
+                    ● Secure Booking
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 BOOKING STEPS
+                 ====================================== -->
+
+            <div class="booking-steps">
+
+                <div class="booking-step active">
+                    <div class="step-number">1</div>
+
+                    <div>
+                        <strong>Vehicle</strong>
+                        <span>Select vehicle</span>
+                    </div>
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="booking-step">
+                    <div class="step-number">2</div>
+
+                    <div>
+                        <strong>Service</strong>
+                        <span>Choose service</span>
+                    </div>
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="booking-step">
+                    <div class="step-number">3</div>
+
+                    <div>
+                        <strong>Center</strong>
+                        <span>Select center</span>
+                    </div>
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="booking-step">
+                    <div class="step-number">4</div>
+
+                    <div>
+                        <strong>Date & Time</strong>
+                        <span>Choose slot</span>
+                    </div>
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="booking-step">
+                    <div class="step-number">5</div>
+
+                    <div>
+                        <strong>Confirm</strong>
+                        <span>Finish booking</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 BOOKING GRID
+                 ====================================== -->
+
+            <div class="booking-grid">
+
+
+                <!-- LEFT FORM -->
+
+                <div class="booking-form-card">
+
+                    <!-- Step 1 -->
+
+                    <div class="booking-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-icon">
+                                🚘
+                            </div>
+
+                            <div>
+                                <h3>Select Vehicle</h3>
+
+                                <p>
+                                    Choose the vehicle you want to service.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <label for="vehicleSelect">
+                            Your Vehicle
+                        </label>
+
+                        <select id="vehicleSelect">
+
+                            <option value="">
+                                Select a vehicle
+                            </option>
+
+                        </select>
+
+                        <div
+                            id="vehicleEmptyMessage"
+                            class="field-message"
+                            style="display:none;"
+                        >
+                            No vehicle found. Please add a vehicle first.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 2 -->
+
+                    <div class="booking-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-icon">
+                                🔧
+                            </div>
+
+                            <div>
+                                <h3>Select Service</h3>
+
+                                <p>
+                                    Choose the service your vehicle needs.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-options">
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="General Service"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🔧
+                                    </div>
+
+                                    <div>
+                                        <strong>General Service</strong>
+                                        <span>
+                                            Routine inspection and maintenance
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹1,500
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Engine Oil Change"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🛢️
+                                    </div>
+
+                                    <div>
+                                        <strong>Engine Oil Change</strong>
+                                        <span>
+                                            Oil replacement and inspection
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹800
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Brake Service"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🛑
+                                    </div>
+
+                                    <div>
+                                        <strong>Brake Service</strong>
+                                        <span>
+                                            Brake inspection and maintenance
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹1,200
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Battery Check"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🔋
+                                    </div>
+
+                                    <div>
+                                        <strong>Battery Check</strong>
+                                        <span>
+                                            Battery health and charging check
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹500
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Tyre Service"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🛞
+                                    </div>
+
+                                    <div>
+                                        <strong>Tyre Service</strong>
+                                        <span>
+                                            Tyre inspection and maintenance
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹700
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="AC Service"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        ❄️
+                                    </div>
+
+                                    <div>
+                                        <strong>AC Service</strong>
+                                        <span>
+                                            Cooling system inspection
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹1,000
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Washing"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🚿
+                                    </div>
+
+                                    <div>
+                                        <strong>Washing</strong>
+                                        <span>
+                                            Exterior vehicle cleaning
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹400
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Wheel Alignment"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        ⚙️
+                                    </div>
+
+                                    <div>
+                                        <strong>Wheel Alignment</strong>
+                                        <span>
+                                            Wheel alignment and balancing
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹900
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="Denting & Painting"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        🎨
+                                    </div>
+
+                                    <div>
+                                        <strong>Denting & Painting</strong>
+                                        <span>
+                                            Exterior body repair
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹2,000
+                                </span>
+
+                            </label>
+
+
+                            <label class="service-option">
+
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value="EV Checkup"
+                                >
+
+                                <div class="service-option-content">
+
+                                    <div class="service-option-icon">
+                                        ⚡
+                                    </div>
+
+                                    <div>
+                                        <strong>EV Checkup</strong>
+                                        <span>
+                                            Electric vehicle inspection
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="service-price">
+                                    From ₹1,500
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 3 -->
+
+                    <div class="booking-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-icon">
+                                📍
+                            </div>
+
+                            <div>
+                                <h3>Select Service Center</h3>
+
+                                <p>
+                                    Choose where you want to service your vehicle.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div id="centerOptions" class="center-options">
+
+
+                            <label class="center-option">
+
+                                <input
+                                    type="radio"
+                                    name="center"
+                                    value="AutoCare Motors"
+                                >
+
+                                <div class="center-option-content">
+
+                                    <div class="center-option-icon">
+                                        🔧
+                                    </div>
+
+                                    <div>
+                                        <strong>AutoCare Motors</strong>
+
+                                        <span>
+                                            ★ 4.8 • 2.4 km away
+                                        </span>
+
+                                        <small>
+                                            Starting from ₹1,500
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                            </label>
+
+
+                            <label class="center-option">
+
+                                <input
+                                    type="radio"
+                                    name="center"
+                                    value="DriveCare Service Hub"
+                                >
+
+                                <div class="center-option-content">
+
+                                    <div class="center-option-icon">
+                                        🔧
+                                    </div>
+
+                                    <div>
+                                        <strong>DriveCare Service Hub</strong>
+
+                                        <span>
+                                            ★ 4.6 • 3.7 km away
+                                        </span>
+
+                                        <small>
+                                            Starting from ₹1,200
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                            </label>
+
+
+                            <label class="center-option">
+
+                                <input
+                                    type="radio"
+                                    name="center"
+                                    value="Prime Auto Service"
+                                >
+
+                                <div class="center-option-content">
+
+                                    <div class="center-option-icon">
+                                        🔧
+                                    </div>
+
+                                    <div>
+                                        <strong>Prime Auto Service</strong>
+
+                                        <span>
+                                            ★ 4.5 • 5.1 km away
+                                        </span>
+
+                                        <small>
+                                            Starting from ₹1,800
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                            </label>
+
+
+                            <label class="center-option">
+
+                                <input
+                                    type="radio"
+                                    name="center"
+                                    value="EV & Auto Care Center"
+                                >
+
+                                <div class="center-option-content">
+
+                                    <div class="center-option-icon">
+                                        ⚡
+                                    </div>
+
+                                    <div>
+                                        <strong>EV & Auto Care Center</strong>
+
+                                        <span>
+                                            ★ 4.3 • 6.8 km away
+                                        </span>
+
+                                        <small>
+                                            Starting from ₹2,000
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 4 -->
+
+                    <div class="booking-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-icon">
+                                📅
+                            </div>
+
+                            <div>
+                                <h3>Date & Time</h3>
+
+                                <p>
+                                    Select your preferred appointment slot.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="date-time-grid">
+
+                            <div>
+
+                                <label for="bookingDate">
+                                    Appointment Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="bookingDate"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label for="bookingTime">
+                                    Preferred Time
+                                </label>
+
+                                <select id="bookingTime">
+
+                                    <option value="">
+                                        Select time
+                                    </option>
+
+                                    <option value="09:00 AM">
+                                        09:00 AM
+                                    </option>
+
+                                    <option value="10:00 AM">
+                                        10:00 AM
+                                    </option>
+
+                                    <option value="11:00 AM">
+                                        11:00 AM
+                                    </option>
+
+                                    <option value="12:00 PM">
+                                        12:00 PM
+                                    </option>
+
+                                    <option value="02:00 PM">
+                                        02:00 PM
+                                    </option>
+
+                                    <option value="03:00 PM">
+                                        03:00 PM
+                                    </option>
+
+                                    <option value="04:00 PM">
+                                        04:00 PM
+                                    </option>
+
+                                    <option value="05:00 PM">
+                                        05:00 PM
+                                    </option>
+
+                                    <option value="06:00 PM">
+                                        06:00 PM
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Additional Note -->
+
+                    <div class="booking-section">
+
+                        <div class="section-heading">
+
+                            <div class="section-icon">
+                                📝
+                            </div>
+
+                            <div>
+                                <h3>Additional Information</h3>
+
+                                <p>
+                                    Tell the service center about any specific issue.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <label for="bookingNote">
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="bookingNote"
+                            rows="4"
+                            placeholder="Example: Engine making unusual noise, brake vibration, AC cooling issue..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- Form Actions -->
+
+                    <div class="booking-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            onclick="window.location.href='service-centers.html'"
+                        >
+                            ← Back
+                        </button>
+
+                        <button
+                            type="button"
+                            class="primary-btn"
+                            id="confirmBookingBtn"
+                        >
+                            Confirm Booking →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     RIGHT SUMMARY
+                     ================================== -->
+
+                <aside class="booking-summary-card">
+
+                    <div class="summary-header">
+
+                        <div>
+                            <h3>Booking Summary</h3>
+
+                            <p>
+                                Review your appointment details
+                            </p>
+                        </div>
+
+                        <div class="summary-icon">
+                            ✓
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-item">
+
+                        <span>Vehicle</span>
+
+                        <strong id="summaryVehicle">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>Service</span>
+
+                        <strong id="summaryService">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>Service Center</span>
+
+                        <strong id="summaryCenter">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>Date</span>
+
+                        <strong id="summaryDate">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>Time</span>
+
+                        <strong id="summaryTime">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="estimated-cost">
+
+                        <span>Estimated Cost</span>
+
+                        <strong id="summaryCost">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-note">
+
+                        <span>🔒</span>
+
+                        <p>
+                            Your booking information is securely
+                            stored and can be viewed from Booking History.
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+
+            <!-- ======================================
+                 CONFIRMATION MODAL
+                 ====================================== -->
+
+            <div
+                id="bookingSuccessModal"
+                class="booking-modal"
+                style="display:none;"
+            >
+
+                <div class="booking-modal-card">
+
+                    <div class="success-icon">
+                        ✓
+                    </div>
+
+                    <h2>Booking Confirmed!</h2>
+
+                    <p>
+                        Your service booking has been created successfully.
+                    </p>
+
+                    <div class="booking-id-box">
+
+                        <span>Booking ID</span>
+
+                        <strong id="generatedBookingId">
+                            VIS-000001
+                        </strong>
+
+                    </div>
+
+                    <div class="modal-actions">
+
+                        <button
+                            class="primary-btn"
+                            onclick="window.location.href='booking-history.html'"
+                        >
+                            View Booking History
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="closeBookingModal()"
+                        >
+                            Book Another Service
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/booking.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Assistant | AI Vehicle Service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ai.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+        <div class="logo-icon">AI</div>
+        <div>
+            <h2>VehicleAI</h2>
+            <span>Smart Vehicle Care</span>
+        </div>
+    </div>
+
+    <nav>
+
+        <div class="menu-title">MAIN</div>
+
+        <a href="dashboard.html">
+            <span>⌂</span> Dashboard
+        </a>
+
+        <a href="vehicles.html">
+            <span>🚗</span> My Vehicles
+        </a>
+
+        <a href="vehicle-health.html" class="active">
+            <span>♥</span> Vehicle Health
+        </a>
+
+        <a href="ai-assistant.html">
+            <span>✦</span> AI Assistant
+        </a>
+
+        <a href="maintenance.html">
+            <span>🔧</span> Maintenance
+        </a>
+
+
+        <div class="menu-title">SERVICES</div>
+
+        <a href="service-centers.html">
+            <span>📍</span> Service Centers
+        </a>
+
+        <a href="booking.html">
+            <span>📅</span> Booking
+        </a>
+
+        <a href="booking-history.html">
+            <span>📋</span> Booking History
+        </a>
+
+        <a href="service-history.html">
+            <span>🕘</span> Service History
+        </a>
+
+
+        <div class="menu-title">ACCOUNT</div>
+
+        <a href="notifications.html">
+            <span>🔔</span> Notifications
+        </a>
+
+        <a href="profile.html">
+            <span>👤</span> Profile
+        </a>
+
+    </nav>
+
+    <button class="logout-btn" onclick="logout()">
+        ↪ Logout
+    </button>
+
+</aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-main">
+
+        <!-- TOPBAR -->
+
+        <header class="dashboard-topbar">
+
+            <button class="mobile-menu-btn" id="menuBtn">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+
+                <h1>AI Assistant</h1>
+
+                <p>
+                    Get intelligent help for your vehicle problems
+                </p>
+
+            </div>
+
+
+            <div class="topbar-user">
+
+                <div class="user-avatar">
+                    NB
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Nishant Bhoyar</strong>
+
+                    <span>
+                        Vehicle Owner
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="ai-page-content">
+
+
+            <!-- AI HERO -->
+
+            <div class="ai-hero">
+
+                <div class="ai-hero-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <span class="ai-label">
+                        AI VEHICLE ASSISTANT
+                    </span>
+
+                    <h2>
+                        What's wrong with your vehicle?
+                    </h2>
+
+                    <p>
+                        Describe the problem you're experiencing
+                        and get possible causes and recommended
+                        next steps.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ASSISTANT AREA ================= -->
+
+            <div class="ai-layout">
+
+
+                <!-- LEFT SIDE -->
+
+                <div class="ai-chat-card">
+
+                    <div class="ai-chat-header">
+
+                        <div>
+
+                            <div class="ai-status-dot"></div>
+
+                            <div>
+
+                                <h3>
+                                    Vehicle AI Assistant
+                                </h3>
+
+                                <span>
+                                    Online • Ready to help
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            id="clearChatBtn"
+                            class="clear-chat-btn">
+
+                            Clear
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Chat -->
+
+                    <div
+                        class="ai-chat-messages"
+                        id="chatMessages">
+
+
+                        <!-- AI Welcome -->
+
+                        <div class="chat-message ai-message">
+
+                            <div class="message-avatar">
+                                ✦
+                            </div>
+
+                            <div class="message-content">
+
+                                <span class="message-name">
+                                    VehicleAI
+                                </span>
+
+                                <div class="message-bubble">
+
+                                    Hello! 👋
+
+                                    <br><br>
+
+                                    Tell me what problem you're
+                                    experiencing with your vehicle.
+                                    For example:
+
+                                    <br><br>
+
+                                    • Engine making unusual noise<br>
+                                    • Vehicle not starting<br>
+                                    • Brake feels weak<br>
+                                    • Battery draining quickly<br>
+                                    • AC not cooling
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Quick Questions -->
+
+                    <div class="quick-question-area">
+
+                        <span>
+                            Common problems
+                        </span>
+
+
+                        <div class="quick-question-list">
+
+                            <button
+                                class="quick-question"
+                                data-question="My vehicle is making a strange engine noise. What could be the possible causes?">
+
+                                🔊 Engine Noise
+
+                            </button>
+
+
+                            <button
+                                class="quick-question"
+                                data-question="My vehicle is not starting. What could be the possible reasons?">
+
+                                🚗 Not Starting
+
+                            </button>
+
+
+                            <button
+                                class="quick-question"
+                                data-question="My brakes feel weak when I press the brake pedal. What could be the possible causes?">
+
+                                🛑 Brake Problem
+
+                            </button>
+
+
+                            <button
+                                class="quick-question"
+                                data-question="My vehicle battery is draining quickly. What could cause this?">
+
+                                🔋 Battery
+
+                            </button>
+
+
+                            <button
+                                class="quick-question"
+                                data-question="My car AC is not cooling properly. What could be the possible causes?">
+
+                                ❄ AC Problem
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Input -->
+
+                    <div class="ai-input-area">
+
+                        <textarea
+                            id="problemInput"
+                            rows="2"
+                            placeholder="Describe your vehicle problem..."></textarea>
+
+
+                        <button
+                            id="sendProblemBtn"
+                            class="send-ai-btn">
+
+                            <span>
+                                ➤
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="input-hint">
+
+                        Press Enter to send • Shift + Enter for
+                        a new line
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+
+                <aside class="ai-side-panel">
+
+
+                    <!-- Vehicle -->
+
+                    <div class="ai-side-card">
+
+                        <div class="side-card-title">
+
+                            <span>
+                                🚗
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Selected Vehicle
+                                </h3>
+
+                                <p>
+                                    Vehicle context
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="selected-vehicle">
+
+                            <strong id="selectedVehicleName">
+                                Hyundai Creta
+                            </strong>
+
+                            <span id="selectedVehicleReg">
+                                MP 00 XX 0000
+                            </span>
+
+                        </div>
+
+
+                        <select
+                            id="aiVehicleSelector"
+                            class="ai-vehicle-select">
+
+                            <option>
+                                Hyundai Creta
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- AI Capabilities -->
+
+                    <div class="ai-side-card">
+
+                        <div class="side-card-title">
+
+                            <span>
+                                ✦
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    AI Capabilities
+                                </h3>
+
+                                <p>
+                                    What the assistant can help with
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="capability-list">
+
+                            <div>
+                                <span>✓</span>
+                                Possible problem causes
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+                                Basic troubleshooting guidance
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+                                Maintenance suggestions
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+                                Service recommendations
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+                                Safety-related guidance
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Safety -->
+
+                    <div class="ai-safety-card">
+
+                        <div class="safety-icon">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Important
+                            </strong>
+
+                            <p>
+                                AI responses are informational
+                                and should not be treated as a
+                                final mechanical diagnosis.
+                                For serious issues, consult a
+                                qualified mechanic.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </aside>
+
+            </div>
+
+
+            <!-- ================= RECENT QUESTIONS ================= -->
+
+            <div class="recent-ai-section">
+
+                <div class="recent-section-header">
+
+                    <div>
+
+                        <h2>
+                            Recent AI Questions
+                        </h2>
+
+                        <p>
+                            Your recent vehicle assistance requests
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="clearHistoryBtn"
+                        class="clear-history-btn">
+
+                        Clear History
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="recentQuestions"
+                    class="recent-question-grid">
+
+                    <div class="empty-ai-history">
+
+                        <span>✦</span>
+
+                        <p>
+                            Your recent questions will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/ai-assistant.js"></script>
+
+</body>
+</html>

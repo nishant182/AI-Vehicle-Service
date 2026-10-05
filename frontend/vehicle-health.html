@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Health | AI Vehicle Service</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/vehicle-health.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-car-side"></i>
+            </div>
+
+            <div class="sidebar-brand">
+                <strong>AI Vehicle</strong>
+                <span>Service</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <div class="sidebar-section-title">MAIN</div>
+
+            <a href="dashboard.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html" class="nav-item">
+                <i class="fa-solid fa-car"></i>
+                <span>My Vehicles</span>
+            </a>
+
+            <a href="vehicle-health.html" class="nav-item active">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>Vehicle Health</span>
+            </a>
+
+            <a href="ai-assistant.html" class="nav-item">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Assistant</span>
+            </a>
+
+            <a href="maintenance.html" class="nav-item">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Maintenance</span>
+            </a>
+
+
+            <div class="sidebar-section-title">SERVICES</div>
+
+            <a href="service-centers.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Service Centers</span>
+            </a>
+
+            <a href="booking.html" class="nav-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Booking</span>
+            </a>
+
+            <a href="booking-history.html" class="nav-item">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Booking History</span>
+            </a>
+
+            <a href="service-history.html" class="nav-item">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Service History</span>
+            </a>
+
+
+            <div class="sidebar-section-title">ACCOUNT</div>
+
+            <a href="notifications.html" class="nav-item">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <a href="#" class="logout-btn" id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1>Vehicle Health</h1>
+                    <p>Monitor your vehicle's health in real time</p>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="topbar-icon-btn" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+
+                <div class="topbar-profile">
+
+                    <div class="topbar-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="topbar-user">
+                        <strong id="topbarUserName">Nishant Bhoyar</strong>
+                        <span>Vehicle Owner</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE CONTENT ================= -->
+        <section class="vehicle-health-page">
+
+
+            <!-- VEHICLE SELECTOR -->
+            <div class="health-page-header">
+
+                <div>
+                    <span class="page-eyebrow">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        VEHICLE MONITORING
+                    </span>
+
+                    <h2>Vehicle Health Overview</h2>
+
+                    <p>
+                        Check your vehicle condition through the interactive
+                        3D health monitor.
+                    </p>
+                </div>
+
+
+                <div class="vehicle-selector">
+
+                    <label for="vehicleSelect">
+                        <i class="fa-solid fa-car"></i>
+                        Vehicle
+                    </label>
+
+                    <select id="vehicleSelect">
+                        <option value="vehicle-1">
+                            Hyundai Creta 2022
+                        </option>
+
+                        <option value="vehicle-2">
+                            Maruti Suzuki Swift 2021
+                        </option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= HEALTH SUMMARY ================= -->
+            <div class="health-summary-grid">
+
+
+                <!-- SCORE -->
+                <div class="health-score-card">
+
+                    <div class="health-card-heading">
+
+                        <div>
+                            <span class="small-label">
+                                OVERALL CONDITION
+                            </span>
+
+                            <h3>Vehicle Health Score</h3>
+                        </div>
+
+                        <div class="health-status-badge">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Good
+                        </div>
+
+                    </div>
+
+
+                    <div class="health-score-content">
+
+                        <div class="health-score-ring">
+
+                            <svg viewBox="0 0 180 180">
+
+                                <circle
+                                    class="score-track"
+                                    cx="90"
+                                    cy="90"
+                                    r="72"
+                                ></circle>
+
+                                <circle
+                                    class="score-progress"
+                                    cx="90"
+                                    cy="90"
+                                    r="72"
+                                ></circle>
+
+                            </svg>
+
+                            <div class="score-value">
+
+                                <strong id="overallScore">
+                                    82
+                                </strong>
+
+                                <span>/100</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="score-info">
+
+                            <h4>Your vehicle is in good condition</h4>
+
+                            <p>
+                                Most major components are operating normally.
+                                A few maintenance items should be checked soon.
+                            </p>
+
+                            <div class="score-update">
+                                <i class="fa-regular fa-clock"></i>
+                                Last updated: Today, 10:30 AM
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK STATS -->
+                <div class="health-quick-card">
+
+                    <div class="quick-card-title">
+                        <span class="small-label">
+                            VEHICLE STATUS
+                        </span>
+
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+
+
+                    <div class="quick-stat-list">
+
+                        <div class="quick-stat">
+
+                            <div class="quick-stat-icon engine">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+
+                            <div>
+                                <span>Engine</span>
+                                <strong>88%</strong>
+                            </div>
+
+                            <div class="mini-status good">
+                                Good
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-stat">
+
+                            <div class="quick-stat-icon brakes">
+                                <i class="fa-solid fa-circle-stop"></i>
+                            </div>
+
+                            <div>
+                                <span>Brakes</span>
+                                <strong>76%</strong>
+                            </div>
+
+                            <div class="mini-status warning">
+                                Check
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-stat">
+
+                            <div class="quick-stat-icon battery">
+                                <i class="fa-solid fa-car-battery"></i>
+                            </div>
+
+                            <div>
+                                <span>Battery</span>
+                                <strong>91%</strong>
+                            </div>
+
+                            <div class="mini-status good">
+                                Good
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-stat">
+
+                            <div class="quick-stat-icon tyre">
+                                <i class="fa-solid fa-circle-dot"></i>
+                            </div>
+
+                            <div>
+                                <span>Tyres</span>
+                                <strong>79%</strong>
+                            </div>
+
+                            <div class="mini-status warning">
+                                Check
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= 3D VEHICLE SECTION ================= -->
+            <div class="vehicle-health-main-grid">
+
+
+                <!-- 3D VIEWER -->
+                <div class="vehicle-3d-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                INTERACTIVE MODEL
+                            </span>
+
+                            <h3>3D Vehicle Health Monitor</h3>
+
+                        </div>
+
+
+                        <div class="viewer-controls">
+
+                            <button
+                                type="button"
+                                id="resetCamera"
+                                title="Reset View"
+                            >
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                            </button>
+
+                            <button
+                                type="button"
+                                id="zoomIn"
+                                title="Zoom In"
+                            >
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                            <button
+                                type="button"
+                                id="zoomOut"
+                                title="Zoom Out"
+                            >
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 3D CANVAS -->
+                    <div
+                        class="vehicle-3d-viewer"
+                        id="vehicle3DViewer"
+                    >
+
+                        <div class="viewer-loading" id="viewerLoading">
+
+                            <div class="loading-spinner"></div>
+
+                            <span>
+                                Loading 3D vehicle...
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="vehicle-model-container"
+                            id="vehicleModelContainer"
+                        >
+                        </div>
+
+
+                        <!-- HOTSPOT: ENGINE -->
+                        <button
+                            class="vehicle-hotspot hotspot-engine"
+                            data-component="engine"
+                            title="Engine"
+                        >
+                            <span class="hotspot-pulse"></span>
+                            <i class="fa-solid fa-gears"></i>
+                        </button>
+
+
+                        <!-- HOTSPOT: BATTERY -->
+                        <button
+                            class="vehicle-hotspot hotspot-battery"
+                            data-component="battery"
+                            title="Battery"
+                        >
+                            <span class="hotspot-pulse"></span>
+                            <i class="fa-solid fa-car-battery"></i>
+                        </button>
+
+
+                        <!-- HOTSPOT: FRONT BRAKES -->
+                        <button
+                            class="vehicle-hotspot hotspot-front-brake"
+                            data-component="brakes"
+                            title="Front Brakes"
+                        >
+                            <span class="hotspot-pulse"></span>
+                            <i class="fa-solid fa-circle-stop"></i>
+                        </button>
+
+
+                        <!-- HOTSPOT: TYRE -->
+                        <button
+                            class="vehicle-hotspot hotspot-tyre"
+                            data-component="tyres"
+                            title="Tyres"
+                        >
+                            <span class="hotspot-pulse"></span>
+                            <i class="fa-solid fa-circle-dot"></i>
+                        </button>
+
+
+                        <!-- VIEWER HELP -->
+                        <div class="viewer-help">
+
+                            <span>
+                                <i class="fa-solid fa-computer-mouse"></i>
+                                Drag to rotate
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Scroll to zoom
+                            </span>
+
+                        </div>
+
+
+                        <!-- MODEL LABEL -->
+                        <div class="model-label">
+
+                            <i class="fa-solid fa-car"></i>
+
+                            <div>
+                                <strong>Hyundai Creta</strong>
+                                <span>2022 • Petrol</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LEGEND -->
+                    <div class="health-legend">
+
+                        <div class="legend-item">
+                            <span class="legend-dot good"></span>
+                            <span>Healthy</span>
+                        </div>
+
+                        <div class="legend-item">
+                            <span class="legend-dot warning"></span>
+                            <span>Needs Attention</span>
+                        </div>
+
+                        <div class="legend-item">
+                            <span class="legend-dot critical"></span>
+                            <span>Critical</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= COMPONENT DETAILS ================= -->
+                <div class="component-details-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="small-label">
+                                COMPONENT DETAILS
+                            </span>
+
+                            <h3 id="selectedComponentTitle">
+                                Engine
+                            </h3>
+
+                        </div>
+
+                        <div
+                            class="component-status good"
+                            id="componentStatus"
+                        >
+                            <i class="fa-solid fa-circle-check"></i>
+                            Good
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMPONENT SCORE -->
+                    <div class="component-score">
+
+                        <div class="component-score-number">
+
+                            <strong id="componentScore">
+                                88
+                            </strong>
+
+                            <span>%</span>
+
+                        </div>
+
+                        <div class="component-score-bar">
+
+                            <div
+                                class="component-score-fill"
+                                id="componentScoreFill"
+                                style="width: 88%;"
+                            ></div>
+
+                        </div>
+
+                        <span class="score-caption">
+                            Health condition
+                        </span>
+
+                    </div>
+
+
+                    <!-- COMPONENT INFO -->
+                    <div class="component-info-list">
+
+
+                        <div class="component-info-row">
+
+                            <div class="info-icon">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+
+                            <div>
+                                <span>Current Status</span>
+                                <strong id="componentCurrentStatus">
+                                    Operating normally
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="component-info-row">
+
+                            <div class="info-icon">
+                                <i class="fa-regular fa-calendar"></i>
+                            </div>
+
+                            <div>
+                                <span>Last Checked</span>
+                                <strong id="componentLastChecked">
+                                    Today
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="component-info-row">
+
+                            <div class="info-icon">
+                                <i class="fa-solid fa-wrench"></i>
+                            </div>
+
+                            <div>
+                                <span>Maintenance</span>
+                                <strong id="componentMaintenance">
+                                    No immediate service required
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AI RECOMMENDATION -->
+                    <div class="ai-health-recommendation">
+
+                        <div class="ai-recommendation-icon">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <div>
+
+                            <span>AI Recommendation</span>
+
+                            <p id="aiRecommendation">
+                                Engine performance looks healthy. Continue
+                                regular servicing and monitor engine oil level.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="view-component-btn"
+                        id="viewComponentBtn"
+                    >
+                        View Detailed Report
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ALL COMPONENTS ================= -->
+            <div class="all-components-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="small-label">
+                            HEALTH BREAKDOWN
+                        </span>
+
+                        <h3>Vehicle Components</h3>
+
+                    </div>
+
+                    <span class="component-count">
+                        5 Components
+                    </span>
+
+                </div>
+
+
+                <div class="component-grid">
+
+
+                    <!-- ENGINE -->
+                    <button
+                        type="button"
+                        class="component-card active"
+                        data-component="engine"
+                    >
+
+                        <div class="component-card-top">
+
+                            <div class="component-card-icon engine">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+
+                            <span class="component-health good">
+                                Good
+                            </span>
+
+                        </div>
+
+                        <h4>Engine</h4>
+
+                        <div class="component-card-score">
+
+                            <strong>88%</strong>
+
+                            <div class="component-mini-bar">
+                                <span style="width:88%;"></span>
+                            </div>
+
+                        </div>
+
+                        <p>
+                            Engine performance is within normal range.
+                        </p>
+
+                    </button>
+
+
+                    <!-- BRAKES -->
+                    <button
+                        type="button"
+                        class="component-card"
+                        data-component="brakes"
+                    >
+
+                        <div class="component-card-top">
+
+                            <div class="component-card-icon brakes">
+                                <i class="fa-solid fa-circle-stop"></i>
+                            </div>
+
+                            <span class="component-health warning">
+                                Attention
+                            </span>
+
+                        </div>
+
+                        <h4>Brakes</h4>
+
+                        <div class="component-card-score">
+
+                            <strong>76%</strong>
+
+                            <div class="component-mini-bar">
+                                <span style="width:76%;"></span>
+                            </div>
+
+                        </div>
+
+                        <p>
+                            Brake pads may require inspection soon.
+                        </p>
+
+                    </button>
+
+
+                    <!-- BATTERY -->
+                    <button
+                        type="button"
+                        class="component-card"
+                        data-component="battery"
+                    >
+
+                        <div class="component-card-top">
+
+                            <div class="component-card-icon battery">
+                                <i class="fa-solid fa-car-battery"></i>
+                            </div>
+
+                            <span class="component-health good">
+                                Good
+                            </span>
+
+                        </div>
+
+                        <h4>Battery</h4>
+
+                        <div class="component-card-score">
+
+                            <strong>91%</strong>
+
+                            <div class="component-mini-bar">
+                                <span style="width:91%;"></span>
+                            </div>
+
+                        </div>
+
+                        <p>
+                            Battery voltage and health look normal.
+                        </p>
+
+                    </button>
+
+
+                    <!-- TYRES -->
+                    <button
+                        type="button"
+                        class="component-card"
+                        data-component="tyres"
+                    >
+
+                        <div class="component-card-top">
+
+                            <div class="component-card-icon tyres">
+                                <i class="fa-solid fa-circle-dot"></i>
+                            </div>
+
+                            <span class="component-health warning">
+                                Attention
+                            </span>
+
+                        </div>
+
+                        <h4>Tyres</h4>
+
+                        <div class="component-card-score">
+
+                            <strong>79%</strong>
+
+                            <div class="component-mini-bar">
+                                <span style="width:79%;"></span>
+                            </div>
+
+                        </div>
+
+                        <p>
+                            Tyre condition should be inspected.
+                        </p>
+
+                    </button>
+
+
+                    <!-- OIL -->
+                    <button
+                        type="button"
+                        class="component-card"
+                        data-component="oil"
+                    >
+
+                        <div class="component-card-top">
+
+                            <div class="component-card-icon oil">
+                                <i class="fa-solid fa-oil-can"></i>
+                            </div>
+
+                            <span class="component-health warning">
+                                Attention
+                            </span>
+
+                        </div>
+
+                        <h4>Engine Oil</h4>
+
+                        <div class="component-card-score">
+
+                            <strong>72%</strong>
+
+                            <div class="component-mini-bar">
+                                <span style="width:72%;"></span>
+                            </div>
+
+                        </div>
+
+                        <p>
+                            Engine oil service is approaching.
+                        </p>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= AI INSIGHT ================= -->
+            <div class="health-ai-card">
+
+                <div class="health-ai-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div class="health-ai-content">
+
+                    <span class="small-label">
+                        AI HEALTH INSIGHT
+                    </span>
+
+                    <h3>
+                        Your vehicle needs routine maintenance soon
+                    </h3>
+
+                    <p>
+                        Based on the current health indicators, engine oil,
+                        brake inspection and tyre condition should be checked
+                        during your next service.
+                    </p>
+
+                </div>
+
+                <a
+                    href="ai-assistant.html"
+                    class="health-ai-btn"
+                >
+                    Ask AI Assistant
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= THREE.JS ================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+
+<!-- PAGE JS -->
+<script src="js/vehicle-health.js"></script>
+
+</body>
+</html>

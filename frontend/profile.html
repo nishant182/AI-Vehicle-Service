@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - AI Vehicle Service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/profile.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body class="profile-page">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="sidebar-logo">
+                <i class="fas fa-car"></i>
+            </div>
+
+            <div class="sidebar-brand">
+                <span>AI Vehicle</span>
+                <small>Service</small>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="sidebar-section-title">
+                MAIN
+            </div>
+
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="vehicles.html" class="nav-item">
+                <i class="fas fa-car"></i>
+                <span>My Vehicles</span>
+            </a>
+
+            <a href="vehicle-health.html" class="nav-item">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Vehicle Health</span>
+            </a>
+
+            <a href="ai-assistant.html" class="nav-item">
+                <i class="fas fa-robot"></i>
+                <span>AI Assistant</span>
+            </a>
+
+            <div class="sidebar-section-title">
+                SERVICES
+            </div>
+
+            <a href="maintenance.html" class="nav-item">
+                <i class="fas fa-screwdriver-wrench"></i>
+                <span>Maintenance</span>
+            </a>
+
+            <a href="service-centers.html" class="nav-item">
+                <i class="fas fa-location-dot"></i>
+                <span>Service Centers</span>
+            </a>
+
+            <a href="booking.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Booking</span>
+            </a>
+
+            <a href="booking-history.html" class="nav-item">
+                <i class="fas fa-clock-rotate-left"></i>
+                <span>Booking History</span>
+            </a>
+
+            <a href="service-history.html" class="nav-item">
+                <i class="fas fa-file-lines"></i>
+                <span>Service History</span>
+            </a>
+
+            <div class="sidebar-section-title">
+                ACCOUNT
+            </div>
+
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+                <span class="notification-count">3</span>
+            </a>
+
+            <a href="profile.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="login.html" class="logout-btn">
+                <i class="fas fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- TOP HEADER -->
+
+        <div class="profile-page-header">
+
+            <div>
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage your account information and preferences.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ================= PROFILE LAYOUT ================= -->
+
+        <div class="profile-layout">
+
+
+            <!-- PROFILE CARD -->
+
+            <section class="profile-card">
+
+                <div class="profile-cover"></div>
+
+                <div class="profile-main">
+
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div class="profile-user-info">
+
+                        <h2 id="profileDisplayName">
+                            Nishant Bhoyar
+                        </h2>
+
+                        <p id="profileDisplayEmail">
+                            nishant@example.com
+                        </p>
+
+                        <span class="profile-status">
+                            <i class="fas fa-circle"></i>
+                            Active Account
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="edit-profile-btn"
+                        id="editProfileBtn"
+                        type="button"
+                    >
+                        <i class="fas fa-pen"></i>
+                        Edit Profile
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PERSONAL INFORMATION ================= -->
+
+            <section class="profile-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Personal Information</h2>
+
+                        <p>
+                            Your basic account information.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-form-grid">
+
+                    <div class="profile-field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                value="Nishant Bhoyar"
+                                disabled
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                value="nishant@example.com"
+                                disabled
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                value="+91 98765 43210"
+                                disabled
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-location-dot"></i>
+
+                            <input
+                                type="text"
+                                id="location"
+                                value="India"
+                                disabled
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SAVE / CANCEL -->
+
+                <div
+                    class="profile-form-actions"
+                    id="profileFormActions"
+                    style="display: none;"
+                >
+
+                    <button
+                        class="cancel-profile-btn"
+                        id="cancelProfileBtn"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="save-profile-btn"
+                        id="saveProfileBtn"
+                        type="button"
+                    >
+                        <i class="fas fa-check"></i>
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ACCOUNT INFORMATION ================= -->
+
+            <section class="profile-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Account Information</h2>
+
+                        <p>
+                            Information related to your AI Vehicle Service account.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="account-info-grid">
+
+                    <div class="account-info-item">
+
+                        <div class="account-info-icon">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+
+                        <div>
+                            <span>Account Created</span>
+                            <strong>September 2026</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-info-item">
+
+                        <div class="account-info-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+
+                        <div>
+                            <span>Account Status</span>
+                            <strong>Active</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-info-item">
+
+                        <div class="account-info-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+
+                        <div>
+                            <span>Registered Vehicles</span>
+                            <strong>1 Vehicle</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-info-item">
+
+                        <div class="account-info-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+
+                        <div>
+                            <span>Notifications</span>
+                            <strong>Enabled</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SECURITY ================= -->
+
+            <section class="profile-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Security</h2>
+
+                        <p>
+                            Manage your account security.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="security-row">
+
+                    <div class="security-info">
+
+                        <div class="security-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>Password</h3>
+
+                            <p>
+                                Keep your password secure and updated.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="security-btn"
+                        id="changePasswordBtn"
+                        type="button"
+                    >
+                        Change Password
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="password-box"
+                    id="passwordBox"
+                    style="display: none;"
+                >
+
+                    <div class="profile-field">
+
+                        <label>
+                            Current Password
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="currentPassword"
+                                placeholder="Enter current password"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>
+                            New Password
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-key"></i>
+
+                            <input
+                                type="password"
+                                id="newPassword"
+                                placeholder="Enter new password"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>
+                            Confirm New Password
+                        </label>
+
+                        <div class="profile-input-wrapper">
+
+                            <i class="fas fa-key"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm new password"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="save-password-btn"
+                        id="savePasswordBtn"
+                        type="button"
+                    >
+                        <i class="fas fa-check"></i>
+                        Update Password
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- Profile JavaScript -->
+    <script src="js/profile.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - VehicleAI</title>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Admin Dashboard Styles -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+    <aside class="sidebar">
+
+        <!-- Brand -->
+        <div class="sidebar-header">
+
+            <div class="sidebar-logo">
+                AI
+            </div>
+
+            <div>
+                <div class="sidebar-brand">
+                    VehicleAI
+                </div>
+
+                <div class="sidebar-subtitle">
+                    Smart Vehicle Care
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Sidebar User -->
+        <div class="sidebar-user">
+
+            <div
+                class="sidebar-user-avatar"
+                id="adminAvatar"
+            >
+                A
+            </div>
+
+            <div>
+                <div
+                    class="sidebar-user-name"
+                    id="adminName"
+                >
+                    Admin
+                </div>
+
+                <div class="sidebar-user-role">
+                    Administrator
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+
+            <!-- MAIN -->
+            <div class="sidebar-section-title">
+                MAIN
+            </div>
+
+
+            <a
+                href="dashboard.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                href="vehicles.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">🚗</span>
+                <span>My Vehicles</span>
+            </a>
+
+
+            <a
+                href="vehicle-health.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">♥</span>
+                <span>Vehicle Health</span>
+            </a>
+
+
+            <a
+                href="ai-assistant.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">✦</span>
+                <span>AI Assistant</span>
+            </a>
+
+
+            <a
+                href="damage-detection.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌕</span>
+                <span>Damage Detection</span>
+            </a>
+
+
+            <a
+                href="maintenance.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">🔧</span>
+                <span>Maintenance</span>
+            </a>
+
+
+            <!-- SERVICES -->
+            <div class="sidebar-section-title">
+                SERVICES
+            </div>
+
+
+            <a
+                href="service-centers.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌖</span>
+                <span>Service Centers</span>
+            </a>
+
+
+            <a
+                href="booking.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">▣</span>
+                <span>Booking</span>
+            </a>
+
+
+            <a
+                href="booking-history.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">◷</span>
+                <span>Booking History</span>
+            </a>
+
+
+            <a
+                href="service-history.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">▤</span>
+                <span>Service History</span>
+            </a>
+
+
+            <!-- ACCOUNT -->
+            <div class="sidebar-section-title">
+                ACCOUNT
+            </div>
+
+
+            <a
+                href="notifications.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">♢</span>
+                <span>Notifications</span>
+            </a>
+
+
+            <a
+                href="profile.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">◉</span>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+
+            <button
+                class="nav-item logout-btn"
+                id="logoutBtn"
+            >
+                <span class="nav-icon">↪</span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="main-content admin-page">
+
+
+        <!-- =========================
+             TOPBAR
+        ========================== -->
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    VehicleAI system overview & management
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             ADMIN CONTENT
+        ========================== -->
+        <section class="admin-content">
+
+
+            <!-- Page Heading -->
+            <div class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        SYSTEM CONTROL
+                    </span>
+
+                    <h2>
+                        Platform Overview
+                    </h2>
+
+                    <p>
+                        Monitor users, vehicles, bookings and services.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="admin-refresh-btn"
+                    id="refreshBtn"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 STATS
+            ========================== -->
+            <div class="admin-stats-grid">
+
+
+                <!-- Total Users -->
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Users
+                        </span>
+
+                        <strong id="totalUsers">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Vehicles -->
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon">
+                        🚗
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Vehicles
+                        </span>
+
+                        <strong id="totalVehicles">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Bookings -->
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Bookings
+                        </span>
+
+                        <strong id="totalBookings">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Total Services -->
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon">
+                        🔧
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Services
+                        </span>
+
+                        <strong id="totalServices">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Service Centers -->
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon">
+                        🏢
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Service Centers
+                        </span>
+
+                        <strong id="totalCenters">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Notifications -->
+                <div class="admin-stat-card">
+
+                    <div class="stat-icon">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Notifications
+                        </span>
+
+                        <strong id="totalNotifications">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 REGISTERED USERS
+            ========================== -->
+            <section class="admin-panel">
+
+
+                <!-- Panel Header -->
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            USER MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Registered Users
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="user-count"
+                        id="userCount"
+                    >
+                        0 Users
+                    </span>
+
+                </div>
+
+
+                <!-- Users Table -->
+                <div class="table-wrapper">
+
+                    <table class="admin-users-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    User
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Phone
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th>
+                                    Joined
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="table-loading"
+                                >
+                                    Loading users...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- Admin JavaScript -->
+    <script src="js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Damage Detection | VehicleAI</title>
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Dashboard / Sidebar CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- AI CSS -->
+    <link rel="stylesheet" href="css/ai.css">
+
+    <!-- Damage Detection CSS -->
+    <link rel="stylesheet" href="css/damage-detection.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- =================================================
+         SIDEBAR
+         ================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                AI
+            </div>
+
+            <div>
+                <h2>VehicleAI</h2>
+                <span>Smart Vehicle Care</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <!-- MAIN -->
+
+            <div class="menu-title">
+                MAIN
+            </div>
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="vehicles.html">
+                <span>🚗</span>
+                My Vehicles
+            </a>
+
+            <a href="vehicle-health.html">
+                <span>♥</span>
+                Vehicle Health
+            </a>
+
+            <a href="ai-assistant.html">
+                <span>✦</span>
+                AI Assistant
+            </a>
+
+            <a href="maintenance.html">
+                <span>🔧</span>
+                Maintenance
+            </a>
+
+
+            <!-- SERVICES -->
+
+            <div class="menu-title">
+                SERVICES
+            </div>
+
+            <a href="service-centers.html">
+                <span>📍</span>
+                Service Centers
+            </a>
+
+            <a href="booking.html">
+                <span>📅</span>
+                Booking
+            </a>
+
+            <a href="booking-history.html">
+                <span>📋</span>
+                Booking History
+            </a>
+
+            <a href="service-history.html">
+                <span>🕘</span>
+                Service History
+            </a>
+
+
+            <!-- ACCOUNT -->
+
+            <div class="menu-title">
+                ACCOUNT
+            </div>
+
+            <a href="notifications.html">
+                <span>🔔</span>
+                Notifications
+            </a>
+
+            <a href="profile.html">
+                <span>👤</span>
+                Profile
+            </a>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            ↪ Logout
+        </button>
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+         ================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+            >
+                ☰
+            </button>
+
+
+            <div class="topbar-title">
+
+                <h1>
+                    Damage Detection
+                </h1>
+
+                <p>
+                    AI-powered vehicle damage analysis
+                </p>
+
+            </div>
+
+
+            <div class="topbar-user">
+
+                <div class="user-avatar">
+                    NB
+                </div>
+
+                <div>
+
+                    <strong>
+                        Nishant Bhoyar
+                    </strong>
+
+                    <small>
+                        Vehicle Owner
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DAMAGE CONTENT
+             ================================================= -->
+
+        <section class="damage-content">
+
+
+            <!-- PAGE HEADING -->
+
+            <div class="page-heading">
+
+                <div>
+
+                    <a
+                        href="dashboard.html"
+                        class="back-link"
+                    >
+                        ← Dashboard
+                    </a>
+
+                    <h2>
+                        AI Damage Detection
+                    </h2>
+
+                    <p>
+                        Upload a vehicle damage image to get
+                        an AI-based damage assessment and
+                        estimated repair cost.
+                    </p>
+
+                </div>
+
+
+                <!-- VEHICLE SELECT -->
+
+                <div class="vehicle-select-box">
+
+                    <label for="vehicleSelect">
+                        Select Vehicle
+                    </label>
+
+                    <select id="vehicleSelect">
+
+                        <option value="">
+                            Select Vehicle
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 UPLOAD + INFO
+                 ================================================= -->
+
+            <div class="damage-grid">
+
+
+                <!-- UPLOAD CARD -->
+
+                <div class="damage-upload-card">
+
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>
+                                Upload Damage Image
+                            </h3>
+
+                            <p>
+                                Use a clear image of the damaged area.
+                            </p>
+
+                        </div>
+
+
+                        <span class="ai-badge">
+                            ✦ AI Analysis
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- UPLOAD AREA -->
+
+                    <div
+                        class="upload-area"
+                        id="uploadArea"
+                    >
+
+
+                        <!-- FILE INPUT -->
+
+                        <input
+                            type="file"
+                            id="damageImage"
+                            accept="image/jpeg,image/jpg,image/png"
+                            hidden
+                        >
+
+
+                        <!-- PLACEHOLDER -->
+
+                        <div
+                            class="upload-placeholder"
+                            id="uploadPlaceholder"
+                        >
+
+                            <div class="upload-icon">
+                                📷
+                            </div>
+
+                            <h4>
+                                Upload Damage Photo
+                            </h4>
+
+                            <p>
+                                Click here or drag & drop an image
+                            </p>
+
+                            <small>
+                                JPG, JPEG or PNG • Maximum 5 MB
+                            </small>
+
+
+                            <button
+                                type="button"
+                                class="primary-btn"
+                                id="chooseImageBtn"
+                            >
+                                Choose Image
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- IMAGE PREVIEW -->
+
+                        <div
+                            class="image-preview"
+                            id="imagePreview"
+                            style="display:none;"
+                        >
+
+                            <img
+                                id="previewImage"
+                                src=""
+                                alt="Damage Preview"
+                            >
+
+
+                            <button
+                                type="button"
+                                class="remove-image"
+                                id="removeImageBtn"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ANALYZE BUTTON -->
+
+                    <button
+                        type="button"
+                        class="analyze-btn"
+                        id="analyzeBtn"
+                        disabled
+                    >
+                        ✦ Analyze Damage
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     HOW IT WORKS
+                     ================================================= -->
+
+                <div class="damage-info-card">
+
+
+                    <div class="info-icon">
+                        ✦
+                    </div>
+
+
+                    <h3>
+                        How AI Damage Detection Works
+                    </h3>
+
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="info-step">
+
+                        <span>
+                            01
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Upload Image
+                            </strong>
+
+                            <p>
+                                Upload a clear photo of the
+                                damaged vehicle area.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="info-step">
+
+                        <span>
+                            02
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                AI Analysis
+                            </strong>
+
+                            <p>
+                                The system analyzes the visible
+                                damage in the uploaded image.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="info-step">
+
+                        <span>
+                            03
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Get Estimate
+                            </strong>
+
+                            <p>
+                                View damage severity, estimated
+                                cost and recommended service.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ANALYSIS RESULT
+                 ================================================= -->
+
+            <section
+                class="analysis-result"
+                id="analysisResult"
+                style="display:none;"
+            >
+
+
+                <!-- RESULT HEADER -->
+
+                <div class="result-header">
+
+                    <div>
+
+                        <span class="result-label">
+                            AI ANALYSIS RESULT
+                        </span>
+
+                        <h2>
+                            Damage Analysis
+                        </h2>
+
+                        <p>
+                            Analysis based on the uploaded
+                            vehicle image.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="severity-badge"
+                        id="severityBadge"
+                    >
+                        Medium
+                    </div>
+
+                </div>
+
+
+
+                <!-- RESULT CARDS -->
+
+                <div class="result-grid">
+
+
+                    <!-- DAMAGE TYPE -->
+
+                    <div class="result-card">
+
+                        <span class="result-icon">
+                            ⚠️
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Detected Damage
+                            </small>
+
+                            <h3 id="damageType">
+                                Front Bumper Damage
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SEVERITY -->
+
+                    <div class="result-card">
+
+                        <span class="result-icon">
+                            🔴
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Severity
+                            </small>
+
+                            <h3 id="damageSeverity">
+                                Medium
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- COST -->
+
+                    <div class="result-card cost-card">
+
+                        <span class="result-icon">
+                            ₹
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Estimated Repair Cost
+                            </small>
+
+                            <h3 id="repairCost">
+                                ₹3,000 – ₹7,000
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SERVICE -->
+
+                    <div class="result-card">
+
+                        <span class="result-icon">
+                            🔧
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Recommended Service
+                            </small>
+
+                            <h3 id="recommendedService">
+                                Denting & Painting
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     AI SUMMARY
+                     ================================================= -->
+
+                <div class="analysis-summary">
+
+                    <div class="summary-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            AI Assessment
+                        </h3>
+
+                        <p id="analysisText">
+
+                            The uploaded image appears to show
+                            visible damage on the vehicle body.
+                            Professional inspection is recommended
+                            before repair.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACTION BUTTONS
+                     ================================================= -->
+
+                <div class="result-actions">
+
+                    <button
+                        class="secondary-btn"
+                        id="newAnalysisBtn"
+                    >
+                        ↻ New Analysis
+                    </button>
+
+
+                    <a
+                        href="booking.html"
+                        class="primary-btn"
+                    >
+                        🔧 Book Service
+                    </a>
+
+                </div>
+
+
+
+                <!-- DISCLAIMER -->
+
+                <div class="damage-disclaimer">
+
+                    <strong>
+                        ⚠ Important:
+                    </strong>
+
+                    AI damage detection provides an estimated
+                    assessment based on the uploaded image.
+                    It is not a final mechanical or repair diagnosis.
+                    Actual repair cost may vary after professional
+                    inspection.
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+     ================================================= -->
+
+<script src="js/dashboard.js"></script>
+<script src="js/damage-detection.js"></script>
+
+</body>
+</html>

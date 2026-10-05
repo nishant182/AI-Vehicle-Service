@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | AI Vehicle Service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body class="dashboard-page">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- LOGO -->
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                🚗
+            </div>
+
+            <div>
+                <h2>AI Vehicle</h2>
+                <span>Service</span>
+            </div>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar">
+                NB
+            </div>
+
+            <div class="user-info">
+                <strong>Nishant</strong>
+                <span>Vehicle Owner</span>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <!-- ================= MAIN ================= -->
+
+            <p class="nav-title">MAIN MENU</p>
+
+
+            <!-- Dashboard -->
+
+            <a href="dashboard.html" class="nav-item active">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- My Vehicles -->
+
+            <a href="vehicles.html" class="nav-item">
+
+                <span class="nav-icon">
+                    🚘
+                </span>
+
+                <span>
+                    My Vehicles
+                </span>
+
+            </a>
+
+
+            <!-- Vehicle Health -->
+
+            <a href="vehicle-health.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ♥
+                </span>
+
+                <span>
+                    Vehicle Health
+                </span>
+
+            </a>
+
+
+            <!-- AI Assistant -->
+
+            <a href="ai-assistant.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ✦
+                </span>
+
+                <span>
+                    AI Assistant
+                </span>
+
+            </a>
+
+
+            <!-- Damage Detection -->
+
+            <a href="damage-detection.html" class="nav-item">
+
+                <span class="nav-icon">
+                    🔍
+                </span>
+
+                <span>
+                    Damage Detection
+                </span>
+
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <a href="maintenance.html" class="nav-item">
+
+                <span class="nav-icon">
+                    🔧
+                </span>
+
+                <span>
+                    Maintenance
+                </span>
+
+            </a>
+
+
+            <!-- ================= SERVICES ================= -->
+
+            <p class="nav-title">
+                SERVICES
+            </p>
+
+
+            <!-- Service Centers -->
+
+            <a href="service-centers.html" class="nav-item">
+
+                <span class="nav-icon">
+                    📍
+                </span>
+
+                <span>
+                    Service Centers
+                </span>
+
+            </a>
+
+
+            <!-- Booking -->
+
+            <a href="booking.html" class="nav-item">
+
+                <span class="nav-icon">
+                    📅
+                </span>
+
+                <span>
+                    Booking
+                </span>
+
+            </a>
+
+
+            <!-- Booking History -->
+
+            <a href="booking-history.html" class="nav-item">
+
+                <span class="nav-icon">
+                    🗓
+                </span>
+
+                <span>
+                    Booking History
+                </span>
+
+            </a>
+
+
+            <!-- Service History -->
+
+            <a href="service-history.html" class="nav-item">
+
+                <span class="nav-icon">
+                    📋
+                </span>
+
+                <span>
+                    Service History
+                </span>
+
+            </a>
+
+
+            <!-- ================= ACCOUNT ================= -->
+
+            <p class="nav-title">
+                ACCOUNT
+            </p>
+
+
+            <!-- Notifications -->
+
+            <a href="notifications.html" class="nav-item">
+
+                <span class="nav-icon">
+                    🔔
+                </span>
+
+                <span>
+                    Notifications
+                </span>
+
+                <span class="notification-count">
+                    3
+                </span>
+
+            </a>
+
+
+            <!-- Profile -->
+
+            <a href="profile.html" class="nav-item">
+
+                <span class="nav-icon">
+                    👤
+                </span>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+            <a href="admin.html" class="nav-item" id="adminNavItem" style="display: none;">
+                
+                <span class="nav-icon">
+                    🛡️
+                </span>
+
+                 <span>
+                    Admin Dashboard
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn">
+
+                <span>
+                    ↪
+                </span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="dashboard-main">
+
+
+        <!-- ================= TOPBAR ================= -->
+
+        <header class="dashboard-topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle">
+
+                    ☰
+
+                </button>
+
+                <div>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Welcome back, Nishant 👋
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button
+                    class="topbar-icon"
+                    onclick="location.href='notifications.html'">
+
+                    🔔
+
+                    <span></span>
+
+                </button>
+
+
+                <div class="topbar-profile">
+
+                    <div class="topbar-avatar">
+                        NB
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Nishant Bhoyar
+                        </strong>
+
+                        <small>
+                            Vehicle Owner
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="dashboard-content">
+
+
+            <!-- ================= WELCOME CARD ================= -->
+
+            <div class="welcome-card">
+
+                <div class="welcome-text">
+
+                    <span class="welcome-label">
+                        AI VEHICLE SERVICE
+                    </span>
+
+                    <h2>
+                        Keep Your Vehicle
+                        <span>
+                            Healthy & Safe.
+                        </span>
+                    </h2>
+
+                    <p>
+                        Monitor your vehicle health, manage maintenance,
+                        book services and get AI-powered assistance.
+                    </p>
+
+                    <button
+                        class="primary-dashboard-btn"
+                        onclick="location.href='vehicle-health.html'">
+
+                        Check Vehicle Health →
+
+                    </button>
+
+                </div>
+
+
+                <div class="welcome-visual">
+
+                    <div class="health-circle">
+
+                        <div class="health-circle-inner">
+
+                            <strong>
+                                82
+                            </strong>
+
+                            <span>
+                                /100
+                            </span>
+
+                            <small>
+                                Health Score
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= STATS ================= -->
+
+            <div class="dashboard-stats">
+
+
+                <!-- TOTAL VEHICLES -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        🚘
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Vehicles
+                        </span>
+
+                        <strong>
+                            2
+                        </strong>
+
+                    </div>
+
+                    <a href="vehicles.html">
+                        View →
+                    </a>
+
+                </div>
+
+
+                <!-- HEALTHY SYSTEMS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Healthy Systems
+                        </span>
+
+                        <strong>
+                            4
+                        </strong>
+
+                    </div>
+
+                    <a href="vehicle-health.html">
+                        Details →
+                    </a>
+
+                </div>
+
+
+                <!-- PENDING SERVICES -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        🔧
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pending Services
+                        </span>
+
+                        <strong>
+                            2
+                        </strong>
+
+                    </div>
+
+                    <a href="maintenance.html">
+                        View →
+                    </a>
+
+                </div>
+
+
+                <!-- UPCOMING BOOKING -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Upcoming Booking
+                        </span>
+
+                        <strong>
+                            1
+                        </strong>
+
+                    </div>
+
+                    <a href="booking-history.html">
+                        View →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= DASHBOARD GRID ================= -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- MY VEHICLE -->
+
+                <div class="dashboard-card vehicle-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                MY VEHICLE
+                            </span>
+
+                            <h3>
+                                Hyundai Creta
+                            </h3>
+
+                        </div>
+
+                        <a href="vehicle-details.html">
+                            View Details →
+                        </a>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-image">
+
+                            <div class="vehicle-placeholder">
+                                🚙
+                            </div>
+
+                        </div>
+
+
+                        <div class="vehicle-details">
+
+                            <div>
+
+                                <span>
+                                    Registration
+                                </span>
+
+                                <strong>
+                                    MP 00 XX 0000
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Fuel Type
+                                </span>
+
+                                <strong>
+                                    Petrol
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Current KM
+                                </span>
+
+                                <strong>
+                                    24,580 km
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Last Service
+                                </span>
+
+                                <strong>
+                                    22,100 km
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VEHICLE HEALTH -->
+
+                <div class="dashboard-card health-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                VEHICLE HEALTH
+                            </span>
+
+                            <h3>
+                                System Overview
+                            </h3>
+
+                        </div>
+
+                        <span class="health-status">
+                            Good
+                        </span>
+
+                    </div>
+
+
+                    <div class="health-list">
+
+
+                        <div class="health-item">
+
+                            <div class="health-item-name">
+
+                                <span class="health-dot good"></span>
+
+                                Engine
+
+                            </div>
+
+                            <strong>
+                                90%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="health-progress">
+                            <span style="width: 90%"></span>
+                        </div>
+
+
+                        <div class="health-item">
+
+                            <div class="health-item-name">
+
+                                <span class="health-dot good"></span>
+
+                                Brakes
+
+                            </div>
+
+                            <strong>
+                                85%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="health-progress">
+                            <span style="width: 85%"></span>
+                        </div>
+
+
+                        <div class="health-item">
+
+                            <div class="health-item-name">
+
+                                <span class="health-dot warning"></span>
+
+                                Battery
+
+                            </div>
+
+                            <strong>
+                                72%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="health-progress">
+                            <span style="width: 72%"></span>
+                        </div>
+
+
+                        <div class="health-item">
+
+                            <div class="health-item-name">
+
+                                <span class="health-dot good"></span>
+
+                                Tyres
+
+                            </div>
+
+                            <strong>
+                                88%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="health-progress">
+                            <span style="width: 88%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="vehicle-health.html"
+                        class="health-link">
+
+                        View Complete Health Report →
+
+                    </a>
+
+                </div>
+
+
+                <!-- MAINTENANCE -->
+
+                <div class="dashboard-card maintenance-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                MAINTENANCE
+                            </span>
+
+                            <h3>
+                                Upcoming Services
+                            </h3>
+
+                        </div>
+
+                        <a href="maintenance.html">
+                            View All →
+                        </a>
+
+                    </div>
+
+
+                    <div class="maintenance-list">
+
+
+                        <div class="maintenance-item">
+
+                            <div class="maintenance-icon">
+                                🛢
+                            </div>
+
+                            <div class="maintenance-info">
+
+                                <strong>
+                                    Engine Oil Change
+                                </strong>
+
+                                <span>
+                                    Due in 420 km
+                                </span>
+
+                            </div>
+
+                            <span class="due-tag">
+                                Soon
+                            </span>
+
+                        </div>
+
+
+                        <div class="maintenance-item">
+
+                            <div class="maintenance-icon">
+                                🛞
+                            </div>
+
+                            <div class="maintenance-info">
+
+                                <strong>
+                                    Tyre Inspection
+                                </strong>
+
+                                <span>
+                                    Due in 1,200 km
+                                </span>
+
+                            </div>
+
+                            <span class="normal-tag">
+                                Upcoming
+                            </span>
+
+                        </div>
+
+
+                        <div class="maintenance-item">
+
+                            <div class="maintenance-icon">
+                                🔋
+                            </div>
+
+                            <div class="maintenance-info">
+
+                                <strong>
+                                    Battery Check
+                                </strong>
+
+                                <span>
+                                    Due in 2,000 km
+                                </span>
+
+                            </div>
+
+                            <span class="normal-tag">
+                                Upcoming
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI ASSISTANT -->
+
+                <div class="dashboard-card ai-card">
+
+                    <div class="ai-card-content">
+
+                        <div class="ai-icon">
+                            ✦
+                        </div>
+
+                        <span class="card-label">
+                            AI ASSISTANT
+                        </span>
+
+                        <h3>
+                            Having a problem<br>
+                            with your vehicle?
+                        </h3>
+
+                        <p>
+                            Describe the problem and let AI
+                            suggest possible causes and next steps.
+                        </p>
+
+                        <a
+                            href="ai-assistant.html"
+                            class="ai-btn">
+
+                            Ask AI Assistant →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RECENT ACTIVITY ================= -->
+
+            <div class="dashboard-card recent-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            ACTIVITY
+                        </span>
+
+                        <h3>
+                            Recent Activity
+                        </h3>
+
+                    </div>
+
+                    <a href="service-history.html">
+                        View History →
+                    </a>
+
+                </div>
+
+
+                <div class="activity-list">
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon completed">
+                            ✓
+                        </div>
+
+                        <div class="activity-content">
+
+                            <strong>
+                                General Service Completed
+                            </strong>
+
+                            <span>
+                                Hyundai Creta • 22,100 km
+                            </span>
+
+                        </div>
+
+                        <time>
+                            12 Sep 2026
+                        </time>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon booking">
+                            📅
+                        </div>
+
+                        <div class="activity-content">
+
+                            <strong>
+                                Service Booking Created
+                            </strong>
+
+                            <span>
+                                General Service • ABC Motors
+                            </span>
+
+                        </div>
+
+                        <time>
+                            10 Sep 2026
+                        </time>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon health">
+                            ♥
+                        </div>
+
+                        <div class="activity-content">
+
+                            <strong>
+                                Vehicle Health Updated
+                            </strong>
+
+                            <span>
+                                Health score updated to 82/100
+                            </span>
+
+                        </div>
+
+                        <time>
+                            08 Sep 2026
+                        </time>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/admin-menu.js"></script>
+
+</body>
+
+</html>

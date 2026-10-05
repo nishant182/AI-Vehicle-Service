@@ -1,0 +1,366 @@
+/* =========================================================
+   AI VEHICLE SERVICE - GLOBAL SIDEBAR
+   Loaded LAST on every dashboard/app page.
+   Keeps the sidebar identical and fixed across all pages.
+   ========================================================= */
+
+:root {
+    --sidebar-width: 250px;
+    --sidebar-bg: #071525;
+    --sidebar-border: rgba(255,255,255,0.07);
+    --sidebar-text: #8fa4ba;
+    --sidebar-muted: #50657a;
+    --sidebar-blue: #00aeff;
+}
+
+/* ---------- FIXED SIDEBAR ---------- */
+.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: var(--sidebar-width) !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+
+    background: linear-gradient(180deg, #0a1829 0%, #07111f 100%) !important;
+    border-right: 1px solid var(--sidebar-border) !important;
+    z-index: 10000 !important;
+
+    transform: none !important;
+}
+
+/* ---------- LOGO / HEADER ---------- */
+.sidebar > .sidebar-logo,
+.sidebar > .sidebar-header {
+    flex: 0 0 74px !important;
+    width: 100% !important;
+    height: 74px !important;
+    min-height: 74px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+    border-bottom: 1px solid var(--sidebar-border) !important;
+}
+
+/* Dashboard-style logo */
+.sidebar > .sidebar-logo {
+    justify-content: flex-start !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    color: #fff !important;
+}
+
+.sidebar > .sidebar-logo .sidebar-logo-icon,
+.sidebar > .sidebar-logo .logo-icon,
+.sidebar > .sidebar-header .sidebar-logo {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    border: 1px solid rgba(0,174,255,0.30) !important;
+    border-radius: 11px !important;
+    background: rgba(0,174,255,0.10) !important;
+    color: #fff !important;
+    font-size: 17px !important;
+    box-shadow: none !important;
+}
+
+.sidebar > .sidebar-logo h2,
+.sidebar > .sidebar-logo .sidebar-brand strong,
+.sidebar > .sidebar-header .sidebar-brand strong {
+    display: block !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+}
+
+.sidebar > .sidebar-logo > div:last-child span,
+.sidebar > .sidebar-logo .sidebar-brand span,
+.sidebar > .sidebar-logo .sidebar-brand small,
+.sidebar > .sidebar-header .sidebar-brand span,
+.sidebar > .sidebar-header .sidebar-brand small {
+    display: block !important;
+    margin-top: 5px !important;
+    color: var(--sidebar-blue) !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+}
+
+.sidebar > .sidebar-header {
+    justify-content: flex-start !important;
+}
+
+.sidebar > .sidebar-header .sidebar-brand {
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+}
+
+/* ---------- USER BLOCK (only where present) ---------- */
+.sidebar > .sidebar-user {
+    width: 100% !important;
+    min-height: 78px !important;
+    flex: 0 0 78px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    border-bottom: 1px solid var(--sidebar-border) !important;
+}
+
+.sidebar-user .user-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #168cff, #006eff) !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
+.sidebar-user .user-info {
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+
+.sidebar-user .user-info strong {
+    color: #fff !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+}
+
+.sidebar-user .user-info span {
+    color: #71859a !important;
+    font-size: 9px !important;
+    white-space: nowrap !important;
+}
+
+/* ---------- NAVIGATION ---------- */
+.sidebar > nav,
+.sidebar > .sidebar-nav {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 17px 12px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255,255,255,0.12) transparent !important;
+}
+
+.sidebar > nav::-webkit-scrollbar,
+.sidebar > .sidebar-nav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar > nav::-webkit-scrollbar-thumb,
+.sidebar > .sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12);
+    border-radius: 10px;
+}
+
+.sidebar .menu-title,
+.sidebar .nav-title,
+.sidebar .nav-section-title,
+.sidebar .sidebar-section-title {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 11px 0 8px !important;
+    padding: 0 11px !important;
+    box-sizing: border-box !important;
+    color: var(--sidebar-muted) !important;
+    background: transparent !important;
+    border: 0 !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.35px !important;
+    line-height: 1.2 !important;
+}
+
+.sidebar .menu-title:first-child,
+.sidebar .nav-title:first-child,
+.sidebar .nav-section-title:first-child,
+.sidebar .sidebar-section-title:first-child {
+    margin-top: 0 !important;
+}
+
+.sidebar > nav > a,
+.sidebar > .sidebar-nav > a,
+.sidebar > nav a,
+.sidebar > .sidebar-nav a {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    height: 40px !important;
+    margin: 0 0 3px !important;
+    padding: 0 11px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    border: 0 !important;
+    border-left: 3px solid transparent !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    color: var(--sidebar-text) !important;
+    text-decoration: none !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    transform: none !important;
+}
+
+.sidebar > nav > a:hover,
+.sidebar > .sidebar-nav > a:hover,
+.sidebar > nav a:hover,
+.sidebar > .sidebar-nav a:hover {
+    color: #fff !important;
+    background: rgba(0,174,255,0.07) !important;
+    transform: none !important;
+}
+
+.sidebar > nav > a.active,
+.sidebar > .sidebar-nav > a.active,
+.sidebar > nav a.active,
+.sidebar > .sidebar-nav a.active {
+    color: #fff !important;
+    background: linear-gradient(90deg, rgba(0,174,255,0.18), rgba(0,174,255,0.04)) !important;
+    border-left: 3px solid var(--sidebar-blue) !important;
+    padding-left: 8px !important;
+}
+
+.sidebar > nav > a > i,
+.sidebar > nav > a > span:first-child,
+.sidebar > .sidebar-nav > a > i,
+.sidebar > .sidebar-nav > a > span:first-child {
+    width: 20px !important;
+    min-width: 20px !important;
+    height: 20px !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #718ba5 !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+}
+
+.sidebar > nav > a.active > i,
+.sidebar > nav > a.active > span:first-child,
+.sidebar > .sidebar-nav > a.active > i,
+.sidebar > .sidebar-nav > a.active > span:first-child {
+    color: var(--sidebar-blue) !important;
+}
+
+.sidebar > nav > a > span:last-child,
+.sidebar > .sidebar-nav > a > span:last-child {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* ---------- LOGOUT / FOOTER ---------- */
+.sidebar > .sidebar-footer,
+.sidebar > .sidebar-bottom {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10px 12px 14px !important;
+    box-sizing: border-box !important;
+    border-top: 1px solid var(--sidebar-border) !important;
+    background: transparent !important;
+}
+
+.sidebar .logout-btn,
+.sidebar .sidebar-footer .logout-btn,
+.sidebar .sidebar-bottom .logout-btn {
+    width: 100% !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+    padding: 0 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    box-sizing: border-box !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    color: #8fa4ba !important;
+    text-decoration: none !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+}
+
+.sidebar .logout-btn:hover {
+    background: rgba(255,255,255,0.05) !important;
+    color: #fff !important;
+}
+
+/* ---------- MAIN CONTENT ALWAYS STARTS AFTER SIDEBAR ---------- */
+body:has(.sidebar) .main-content,
+body:has(.sidebar) .dashboard-main {
+    margin-left: var(--sidebar-width) !important;
+    width: calc(100% - var(--sidebar-width)) !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+}
+
+/* Prevent horizontal page movement caused by fixed sidebar */
+html, body {
+    overflow-x: hidden;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 250px !important;
+    }
+
+    body:has(.sidebar) .main-content,
+    body:has(.sidebar) .dashboard-main {
+        margin-left: 250px !important;
+        width: calc(100% - 250px) !important;
+    }
+}

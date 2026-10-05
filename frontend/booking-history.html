@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking History | VehicleAI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/booking-history.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+         SIDEBAR
+         ========================================== -->
+
+    <aside class="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <i class="fas fa-car"></i>
+        </div>
+
+        <div class="sidebar-brand">
+            <strong>AI Vehicle <span>Service</span></strong>
+            <small>Smart Vehicle Care</small>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+
+        <!-- MAIN -->
+        <div class="sidebar-section-title">MAIN</div>
+
+        <a href="dashboard.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="vehicles.html">
+            <i class="fas fa-car-side"></i>
+            <span>My Vehicles</span>
+        </a>
+
+        <a href="vehicle-health.html">
+            <i class="fas fa-heartbeat"></i>
+            <span>Vehicle Health</span>
+        </a>
+
+        <a href="ai-assistant.html">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+        </a>
+
+        <a href="maintenance.html">
+            <i class="fas fa-tools"></i>
+            <span>Maintenance</span>
+        </a>
+
+
+        <!-- SERVICES -->
+        <div class="sidebar-section-title">SERVICES</div>
+
+        <a href="service-centers.html">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Service Centers</span>
+        </a>
+
+        <a href="booking.html">
+            <i class="fas fa-calendar-check"></i>
+            <span>Booking</span>
+        </a>
+
+        <a href="booking-history.html">
+            <i class="fas fa-history"></i>
+            <span>Booking History</span>
+        </a>
+
+        <a href="service-history.html">
+            <i class="fas fa-file-invoice"></i>
+            <span>Service History</span>
+        </a>
+
+
+        <!-- ACCOUNT -->
+        <div class="sidebar-section-title">ACCOUNT</div>
+
+        <a href="notifications.html">
+            <i class="fas fa-bell"></i>
+            <span>Notifications</span>
+        </a>
+
+        <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+    </nav>
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+        <a href="#" class="logout-btn" onclick="logoutUser(event)">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
+
+    <main class="main-content">
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Toggle menu"
+                >
+                    ☰
+                </button>
+
+                <div>
+                    <h1>Booking History</h1>
+
+                    <p>
+                        View and manage your service bookings
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        NB
+                    </div>
+
+                    <div class="user-info">
+                        <strong>Nishant Bhoyar</strong>
+                        <span>Vehicle Owner</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==========================================
+             BOOKING HISTORY CONTENT
+             ========================================== -->
+
+        <section class="booking-history-content">
+
+
+            <!-- Page Heading -->
+
+            <div class="history-page-heading">
+
+                <div>
+                    <h2>Your Bookings</h2>
+
+                    <p>
+                        Track your current and previous service appointments.
+                    </p>
+                </div>
+
+                <a
+                    href="booking.html"
+                    class="new-booking-btn"
+                >
+                    + New Booking
+                </a>
+
+            </div>
+
+
+            <!-- ======================================
+                 SUMMARY CARDS
+                 ====================================== -->
+
+            <div class="booking-summary-stats">
+
+                <div class="booking-stat-card">
+
+                    <div class="stat-icon blue">
+                        📋
+                    </div>
+
+                    <div>
+                        <span>Total Bookings</span>
+                        <strong id="totalBookings">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-stat-card">
+
+                    <div class="stat-icon orange">
+                        ⏳
+                    </div>
+
+                    <div>
+                        <span>Pending</span>
+                        <strong id="pendingBookings">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>Confirmed</span>
+                        <strong id="confirmedBookings">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="booking-stat-card">
+
+                    <div class="stat-icon purple">
+                        ✓
+                    </div>
+
+                    <div>
+                        <span>Completed</span>
+                        <strong id="completedBookings">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 FILTER BAR
+                 ====================================== -->
+
+            <div class="booking-filter-card">
+
+                <div class="booking-search">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        id="bookingSearch"
+                        placeholder="Search booking, vehicle or service..."
+                    >
+
+                </div>
+
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Confirmed">
+                        Confirmed
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                    <option value="Cancelled">
+                        Cancelled
+                    </option>
+
+                </select>
+
+
+                <select id="bookingSort">
+
+                    <option value="newest">
+                        Newest First
+                    </option>
+
+                    <option value="oldest">
+                        Oldest First
+                    </option>
+
+                    <option value="date">
+                        Appointment Date
+                    </option>
+
+                    <option value="cost-high">
+                        Cost: High to Low
+                    </option>
+
+                    <option value="cost-low">
+                        Cost: Low to High
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ======================================
+                 RESULT HEADER
+                 ====================================== -->
+
+            <div class="history-result-header">
+
+                <div>
+                    <h3>
+                        Service Bookings
+                    </h3>
+
+                    <span id="bookingResultCount">
+                        0 bookings
+                    </span>
+                </div>
+
+                <button
+                    type="button"
+                    class="clear-filter-btn"
+                    id="clearFiltersBtn"
+                >
+                    Clear Filters
+                </button>
+
+            </div>
+
+
+            <!-- ======================================
+                 BOOKING LIST
+                 ====================================== -->
+
+            <div
+                id="bookingList"
+                class="booking-history-list"
+            >
+                <!-- Booking cards generated by JS -->
+            </div>
+
+
+            <!-- ======================================
+                 EMPTY STATE
+                 ====================================== -->
+
+            <div
+                id="bookingEmptyState"
+                class="booking-empty-state"
+                style="display:none;"
+            >
+
+                <div class="empty-icon">
+                    📅
+                </div>
+
+                <h3>
+                    No Bookings Found
+                </h3>
+
+                <p>
+                    You don't have any service bookings matching
+                    the selected filters.
+                </p>
+
+                <a
+                    href="booking.html"
+                    class="new-booking-btn"
+                >
+                    Create New Booking
+                </a>
+
+            </div>
+
+
+            <!-- ======================================
+                 INFO BANNER
+                 ====================================== -->
+
+            <div class="booking-history-info">
+
+                <div class="info-icon">
+                    ℹ
+                </div>
+
+                <div>
+
+                    <strong>
+                        Booking Status
+                    </strong>
+
+                    <p>
+                        Pending bookings are waiting for service-center
+                        confirmation. Confirmed bookings are scheduled
+                        appointments. Completed bookings are moved to
+                        your Service History.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/booking-history.js"></script>
+
+</body>
+</html>
