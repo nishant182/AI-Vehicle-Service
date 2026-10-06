@@ -571,3 +571,121 @@ footer {
         width: 100% !important;
     }
 }
+
+/* =========================================================
+   MOBILE SIDEBAR BUTTON + OVERLAY
+========================================================= */
+
+.menu-btn {
+    display: none;
+
+    position: fixed;
+    top: 14px;
+    left: 14px;
+
+    width: 44px;
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 10px;
+
+    background: #0b1c30;
+    color: #ffffff;
+
+    font-size: 23px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 100001;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.menu-btn:hover {
+    background: #102942;
+}
+
+
+/* Sidebar background overlay */
+
+.sidebar-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+
+    backdrop-filter: blur(2px);
+
+    z-index: 99998;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+
+/* Prevent page movement when sidebar is open */
+
+body.sidebar-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 850px) {
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 270px !important;
+        max-width: 82vw !important;
+
+        transform: translateX(-105%) !important;
+
+        transition: transform 0.25s ease !important;
+
+        z-index: 100000 !important;
+    }
+
+    .sidebar.open {
+        transform: translateX(0) !important;
+    }
+
+    .main-content,
+    .dashboard-main {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    .menu-btn {
+        top: 12px;
+        left: 12px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 21px;
+    }
+
+}

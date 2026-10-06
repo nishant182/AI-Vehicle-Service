@@ -1,4 +1,6 @@
+
 from pathlib import Path
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -48,15 +50,19 @@ from backend.routes.services import router as service_router
 from backend.routes.vehicle_health import router as vehicle_health_router
 from backend.routes.vehicles import router as vehicle_router
 
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
 UPLOADS_DIR = PROJECT_ROOT / "uploads"
 UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
+
 
 app = FastAPI(
     title=APP_NAME,
     description="AI-powered vehicle service management system",
     version=APP_VERSION,
 )
+
 
 # Static uploaded images/files.
 app.mount(
@@ -65,9 +71,35 @@ app.mount(
     name="uploads",
 )
 
+
 # Create missing tables and minimum catalog data on startup.
 Base.metadata.create_all(bind=engine)
 seed_initial_data()
+
+
+# Temporary production admin bootstrap.
+# Set ADMIN_BOOTSTRAP_EMAIL in Render environment variables.
+admin_bootstrap_email = os.getenv("ADMIN_BOOTSTRAP_EMAIL")
+
+if admin_bootstrap_email:
+    from backend.database.connection import SessionLocal
+
+    db = SessionLocal()
+
+    try:
+        admin_user = (
+            db.query(User)
+            .filter(User.email == admin_bootstrap_email)
+            .first()
+        )
+
+        if admin_user and not admin_user.is_admin:
+            admin_user.is_admin = True
+            db.commit()
+
+    finally:
+        db.close()
+
 
 # GitHub Pages + local development.
 allowed_origins = {
@@ -77,13 +109,28 @@ allowed_origins = {
     "http://localhost:5500",
 }
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=sorted(allowed_origins),
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type", "Accept", "Origin", "X-Requested-With"],
+    allow_methods=[
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH",
+        "OPTIONS",
+    ],
+    allow_headers=[
+        "Authorization",
+        "Content-Type",
+        "Accept",
+        "Origin",
+        "X-Requested-With",
+    ],
 )
+
 
 # API routes
 app.include_router(auth_router)
@@ -121,3 +168,4 @@ def health_check():
         "status": "healthy",
         "service": APP_NAME,
     }
+
