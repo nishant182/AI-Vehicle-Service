@@ -32,7 +32,8 @@ router = APIRouter(
 # IMAGE UPLOAD CONFIGURATION
 # =========================================
 
-UPLOAD_DIR = Path("uploads") / "vehicles"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+UPLOAD_DIR = PROJECT_ROOT / "uploads" / "vehicles"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 MAX_IMAGE_SIZE = 5 * 1024 * 1024  # 5 MB

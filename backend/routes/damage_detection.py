@@ -18,7 +18,8 @@ router = APIRouter(
     tags=["AI Damage Detection"]
 )
 
-UPLOAD_DIR = Path("uploads/damage")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+UPLOAD_DIR = PROJECT_ROOT / "uploads" / "damage"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_TYPES = {

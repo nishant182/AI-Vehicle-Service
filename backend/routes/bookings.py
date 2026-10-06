@@ -9,6 +9,7 @@ from backend.models.service import Service
 from backend.models.service_center import ServiceCenter
 from backend.models.service_center_service import service_center_services
 from backend.models.service_history import ServiceHistory
+from backend.models.notification import Notification
 from backend.models.vehicle import Vehicle
 from backend.models.user import User
 from backend.routes.auth import get_current_user
@@ -112,6 +113,20 @@ def create_booking(
     )
 
     db.add(booking)
+    db.flush()
+
+    db.add(
+        Notification(
+            user_id=current_user.id,
+            title="Booking Created",
+            message=(
+                f"Your booking #{booking.id} has been created successfully."
+            ),
+            notification_type="Booking",
+            is_read=False,
+        )
+    )
+
     db.commit()
     db.refresh(booking)
 
@@ -200,6 +215,15 @@ def update_booking(
         )
 
     update_data = data.model_dump(exclude_unset=True)
+
+    # Users may cancel a booking from this endpoint, but only admins
+    # can move a booking through Confirmed/In Progress/Completed.
+    if "status" in update_data:
+        if update_data["status"] != "Cancelled":
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only admins can change booking workflow status"
+            )
 
     # Validate booking date
     if "booking_date" in update_data:
@@ -310,6 +334,16 @@ def cancel_booking(
         )
 
     booking.status = "Cancelled"
+
+    db.add(
+        Notification(
+            user_id=current_user.id,
+            title="Booking Cancelled",
+            message=f"Your booking #{booking.id} has been cancelled.",
+            notification_type="Booking",
+            is_read=False,
+        )
+    )
 
     db.commit()
 

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
 
         const response = await fetch(
-            `${ADMIN_MENU_API}/auth/me`,
+            `${API_BASE_URL}/auth/me`,
             {
                 headers: {
                     "Authorization": `Bearer ${token}`

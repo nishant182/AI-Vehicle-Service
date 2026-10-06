@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: ai-vehicle-service
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.3
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_MODEL
+        value: openai/gpt-4o-mini
+      - key: FRONTEND_ORIGIN
+        value: https://nishant182.github.io
