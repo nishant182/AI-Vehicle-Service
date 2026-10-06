@@ -1,10 +1,10 @@
-
 from pathlib import Path
 import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from sqlalchemy import func
 
 from backend.config import (
     APP_NAME,
@@ -79,7 +79,10 @@ seed_initial_data()
 
 # Temporary production admin bootstrap.
 # Set ADMIN_BOOTSTRAP_EMAIL in Render environment variables.
-admin_bootstrap_email = os.getenv("ADMIN_BOOTSTRAP_EMAIL")
+admin_bootstrap_email = os.getenv(
+    "ADMIN_BOOTSTRAP_EMAIL",
+    ""
+).strip().lower()
 
 if admin_bootstrap_email:
     from backend.database.connection import SessionLocal
@@ -89,13 +92,31 @@ if admin_bootstrap_email:
     try:
         admin_user = (
             db.query(User)
-            .filter(User.email == admin_bootstrap_email)
+            .filter(func.lower(User.email) == admin_bootstrap_email)
             .first()
         )
 
-        if admin_user and not admin_user.is_admin:
-            admin_user.is_admin = True
-            db.commit()
+        if admin_user:
+            if not admin_user.is_admin:
+                admin_user.is_admin = True
+                db.commit()
+
+                print(
+                    f"ADMIN BOOTSTRAP: {admin_user.email} is now admin."
+                )
+            else:
+                print(
+                    f"ADMIN BOOTSTRAP: {admin_user.email} is already admin."
+                )
+        else:
+            print(
+                f"ADMIN BOOTSTRAP: user not found for "
+                f"{admin_bootstrap_email}"
+            )
+
+    except Exception as error:
+        db.rollback()
+        print(f"ADMIN BOOTSTRAP ERROR: {error}")
 
     finally:
         db.close()
@@ -168,4 +189,3 @@ def health_check():
         "status": "healthy",
         "service": APP_NAME,
     }
-
