@@ -1,3 +1,5 @@
+import os
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
@@ -47,13 +49,24 @@ def register(
             detail="Email already registered"
         )
 
+    # Email configured in Render as the admin account.
+    admin_email = os.getenv(
+        "ADMIN_BOOTSTRAP_EMAIL",
+        ""
+    ).strip().lower()
+
+    is_admin_user = (
+        bool(admin_email)
+        and data.email.strip().lower() == admin_email
+    )
+
     user = User(
         name=data.name,
         email=data.email,
         phone=data.phone,
         password_hash=hash_password(data.password),
         is_active=True,
-        is_admin=False,
+        is_admin=is_admin_user,
     )
 
     db.add(user)
